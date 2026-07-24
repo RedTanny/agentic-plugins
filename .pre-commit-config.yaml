@@ -8,6 +8,12 @@ repos:
       # Uses gitleaks on PATH (install: brew install gitleaks, or run scripts/install-hooks.sh)
       - id: gitleaks-system
 
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.4.3
+    hooks:
+      - id: codespell
+        args: [--config, .codespellrc]
+
   - repo: local
     hooks:
       - id: make-validate
