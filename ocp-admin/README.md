@@ -431,9 +431,9 @@ Design and validate Kubernetes NetworkPolicies following Zero Trust principles (
 
 **What it does**:
 - **Tier 1 (Architecture Analysis)**: Maps all pod types, services, communication flows, and special networking cases (hostNetwork, OVN-K, DNS on 5353) from source code and manifests
-- **Tier 2 (Live Cluster Verification)**: Validates draft rules against a running cluster using MCP tools — verifies pod labels, services, existing policies, and performs dry-run policy application with health checks
-- Produces implementation plan with default-deny, per-pod rules, exceptions, dry-run results, and NIST SP 800-207 alignment
-- Requires human confirmation before applying or removing dry-run policies
+- **Tier 2 (Live Cluster Verification)**: Validates draft rules against a running cluster using MCP tools — verifies pod labels, services, existing policies, and performs temporary apply-and-verify with health checks
+- Produces implementation plan with default-deny, per-pod rules, exceptions, verification results, and NIST SP 800-207 alignment
+- Requires human confirmation before applying or removing verification policies
 
 ---
 

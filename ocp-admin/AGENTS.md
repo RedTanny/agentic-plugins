@@ -44,7 +44,7 @@ Three MCP servers may be available in local runtimes. Skills manage these automa
 
 - **openshift-self-managed** (Required for cluster-creator, cluster-inventory) — Assisted Installer API for self-managed cluster lifecycle (OCP, SNO). Requires OFFLINE_TOKEN from https://cloud.redhat.com/openshift/token.
 - **openshift-ocm-managed** (Required for cluster-inventory) — OpenShift Cluster Manager API for managed service clusters (ROSA, ARO, OSD). Requires OFFLINE_TOKEN.
-- **openshift-administration** (Required for cluster-report, network-policy-architect) — Kubernetes/OpenShift cluster operations for multi-cluster management. Requires KUBECONFIG with cluster access.
+- **openshift-administration** (Required for cluster-report, network-policy-architect) — Kubernetes/OpenShift cluster operations for multi-cluster management. Requires KUBECONFIG with cluster access. Read-only for cluster-report; read-write for network-policy-architect (temporary policy application during verification).
 
 ## Helper Scripts (Security Validation)
 

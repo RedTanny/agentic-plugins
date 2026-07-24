@@ -117,7 +117,7 @@ contents:
       - "Design network segmentation following Zero Trust"
       **What it does:**
       - Tier 1: Maps pod types, services, communication flows, and special networking cases from source and manifests.
-      - Tier 2: Validates draft rules against a running cluster via MCP tools with dry-run application.
+      - Tier 2: Validates draft rules against a running cluster via MCP tools with temporary apply-and-verify.
       - Produces verified implementation plan with default-deny, per-pod rules, and NIST alignment.
   orchestration_skills: []
   skills_decision_guide:
@@ -172,7 +172,7 @@ sample_workflows:
 - name: Zero Trust NetworkPolicy design
   workflow: |
     User: "Create NetworkPolicies for the qtodo namespace following Zero Trust"
-    - `/network-policy-architect` maps communication flows, drafts per-pod rules, verifies on live cluster with dry-run
+    - `/network-policy-architect` maps communication flows, drafts per-pod rules, verifies on live cluster with temporary apply-and-verify
 resources:
 - title: OpenShift documentation
   url: https://docs.redhat.com/en/documentation/openshift_container_platform/

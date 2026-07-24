@@ -4,7 +4,7 @@ description: |
   Design and validate Kubernetes NetworkPolicies following Zero Trust
   principles (NIST SP 800-207). Two-tier analysis — architecture review
   then live cluster verification — produces a verified implementation
-  plan with dry-run results.
+  plan with apply-and-verify results.
 
   Use when:
   - "Create NetworkPolicies for my namespace"
@@ -20,8 +20,8 @@ description: |
 license: Apache-2.0
 model: inherit
 color: red
+allowed-tools: pods_list resources_list resources_get resources_create_or_update resources_delete pods_log namespaces_list
 metadata:
-  author: "proguski"
   version: "1.0"
 ---
 
@@ -44,26 +44,6 @@ Recommendations carry the weight of a security audit. Every rule proposed must b
 - **Last resort only**: CLI commands (`oc`, `kubectl`) may be attempted if no MCP alternative exists
 - **Assume unavailable**: CLI tools are likely not installed in the execution environment
 
-## Critical: Human-in-the-Loop Requirements
-
-1. **Before applying NetworkPolicies (dry-run)**
-   - Display the full YAML of each policy to be applied
-   - Show which namespace will be affected
-   - Ask: "Should I apply these policies for dry-run verification?"
-   - Wait for explicit confirmation (yes/no)
-
-2. **Before deleting dry-run policies**
-   - List all policies to be removed
-   - Ask: "Should I remove the dry-run policies?"
-   - Wait for confirmation
-
-3. **Default-deny exception**
-   - If the user decides NOT to implement default-deny, require explicit written acknowledgment
-   - Display: *"Without default-deny, any pod not matching an existing policy has UNRESTRICTED network access — full DNS, cross-namespace, and internet egress."*
-   - Ask: "Do you acknowledge this deviation from NIST SP 800-207?"
-
-**Never assume approval** — always wait for explicit confirmation before apply or delete operations.
-
 ## Prerequisites
 
 **Required MCP Servers:** `openshift-administration` — Kubernetes/OpenShift cluster operations ([setup guide](../../README.md))
@@ -72,7 +52,7 @@ Recommendations carry the weight of a security audit. Every rule proposed must b
 - `pods_list` — list pods in a namespace with status and labels
 - `resources_list` — list resources by apiVersion/kind in a namespace
 - `resources_get` — get a single resource by apiVersion/kind/name
-- `resources_create_or_update` — apply NetworkPolicy YAML (for dry-run)
+- `resources_create_or_update` — apply NetworkPolicy YAML (for temporary verification)
 - `resources_delete` — remove dry-run NetworkPolicies
 
 **Environment Variables:**
@@ -283,27 +263,29 @@ For each pod type, check logs for:
 **Error Handling:**
 - If pod has multiple containers: check logs for each container
 
-### Step 14: Apply Policies as Dry-Run
+### Step 14: Temporary Apply-and-Verify
 
 **Human Confirmation Required** — display all policies and wait for approval before applying.
 
 **MCP Tool:** `resources_create_or_update` (from openshift-administration)
 
 **Parameters:**
-- `yaml`: "<full-networkpolicy-yaml>" (string, complete NetworkPolicy manifest)
+- `resource`: "<full-networkpolicy-yaml>" (string, complete NetworkPolicy manifest)
 
 Apply each proposed NetworkPolicy. Then verify:
 - All pods remain Running and Ready (use `pods_list`)
 - All routes respond (check via route host)
 - All dependent applications in other namespaces still work
 - Logs show no new connection errors (use `pods_log`)
-- Force restart critical pods and verify recovery
+- **Human Confirmation Required** before force-restarting critical pods — list pods to restart, ask for approval, then verify recovery
 
-### Step 15: Record Dry-Run Results
+### Step 15: Record Verification Results
 
 For each verification check, record PASS or FAIL with evidence.
 
-### Step 16: Clean Up Dry-Run Policies
+**If any check FAILS:** Immediately proceed to Step 16 to remove the applied policies before diagnosing the issue. Report the failure evidence to the user and ask how to proceed (fix draft rules and retry, or abort).
+
+### Step 16: Clean Up Verification Policies
 
 **Human Confirmation Required** — list policies and wait for approval.
 
@@ -375,7 +357,7 @@ Document each exception:
 - Port-only rules (no selector) — which rules, why selectors can't be used
 - Any pod type intentionally left without a policy — justify
 
-#### 5. Dry-Run Results
+#### 5. Verification Results
 
 | Verification | Result | Evidence |
 |---|---|---|
@@ -406,7 +388,7 @@ Map each policy to Zero Trust principles:
 2. **Never skip default-deny.** If the user doesn't want it, document it as a security exception — don't silently omit it.
 3. **Justify every open port.** "It might be needed" is not a justification. Every ingress and egress rule must trace back to an observed communication flow.
 4. **Document every exception.** hostNetwork, port-only rules, operator-managed policies — all must be explicitly called out with explanations.
-5. **Test before recommending.** The dry-run is mandatory. Untested policies are proposals, not recommendations.
+5. **Test before recommending.** The temporary apply-and-verify phase is mandatory. Untested policies are proposals, not recommendations.
 6. **OVN-Kubernetes awareness.** On OpenShift, understand OVN-K-specific behaviors: policy-group labels for router ingress, port 5353 for DNS (not 53), DNAT for K8s API, transit IPs for hostNetwork pods.
 7. **Helm template conditions.** When creating NetworkPolicy templates gated by values (e.g., `enabled: true`), always use `(eq (.Values.field | toString) "true")` — not bare `.Values.field`. Helm overrides via `extraValueFiles` and pattern frameworks often pass booleans as strings (`"true"` not `true`). Bare boolean evaluation fails silently when the value is a string, causing policies to not render. Apply `| toString` consistently to ALL condition halves in `{{- if and ... }}` expressions.
 8. **MCP tools first.** Always use MCP tools from `openshift-administration` for cluster operations. Do not use `oc` or `kubectl` CLI commands unless no MCP alternative exists.
@@ -424,7 +406,7 @@ Map each policy to Zero Trust principles:
 - `resources_get` (from openshift-administration) — get single resource
   - Parameters: apiVersion, kind, name, namespace
 - `resources_create_or_update` (from openshift-administration) — apply NetworkPolicy YAML
-  - Parameters: yaml
+  - Parameters: resource
 - `resources_delete` (from openshift-administration) — delete NetworkPolicy
   - Parameters: apiVersion, kind, name, namespace
 - `pods_log` (from openshift-administration) — read pod logs
@@ -439,6 +421,33 @@ Map each policy to Zero Trust principles:
 **Official:** [NIST SP 800-207 - Zero Trust Architecture](https://nvlpubs.nist.gov/nistpubs/specialpublications/NIST.SP.800-207.pdf)
 **Official:** [Admin Network Policy API](https://network-policy-api.sigs.k8s.io/)
 
+## Human-in-the-Loop
+
+This skill performs operations that modify cluster state, requiring explicit user confirmation:
+
+1. **Before applying NetworkPolicies** (Step 14)
+   - Display the full YAML of each policy to be applied
+   - Show which namespace will be affected
+   - Ask: "Should I apply these policies for verification?"
+   - Wait for explicit confirmation (yes/no)
+
+2. **Before force-restarting pods** (Step 14)
+   - List pods to be restarted
+   - Ask: "Should I restart these pods to verify recovery?"
+   - Wait for confirmation
+
+3. **Before removing verification policies** (Step 16)
+   - List all policies to be removed
+   - Ask: "Should I remove the verification policies?"
+   - Wait for confirmation
+
+4. **Default-deny exception**
+   - If the user decides NOT to implement default-deny, require explicit written acknowledgment
+   - Display: *"Without default-deny, any pod not matching an existing policy has UNRESTRICTED network access — full DNS, cross-namespace, and internet egress."*
+   - Ask: "Do you acknowledge this deviation from NIST SP 800-207?"
+
+**Never assume approval** — always wait for explicit confirmation before apply, delete, or restart operations.
+
 ## Example Usage
 
 **User:** "Create NetworkPolicies for the qtodo namespace following Zero Trust principles"
@@ -446,5 +455,5 @@ Map each policy to Zero Trust principles:
 **Skill response:**
 1. Tier 1: Analyzes qtodo source code and Helm chart, identifies pods (qtodo-app, qtodo-db), services (qtodo, qtodo-db), routes, and communication flows (ingress from router, egress to DB/DNS/Keycloak/Vault).
 2. Presents communication map and draft rules for user review.
-3. Tier 2: Connects to the cluster via MCP, verifies pod labels, services, and existing policies. Applies draft policies as dry-run, verifies all pods healthy, routes respond, and logs show no errors.
-4. Produces the final implementation plan with default-deny, per-pod rules, exceptions, dry-run results, and NIST alignment.
+3. Tier 2: Connects to the cluster via MCP, verifies pod labels, services, and existing policies. Temporarily applies draft policies, verifies all pods healthy, routes respond, and logs show no errors, then removes verification policies.
+4. Produces the final implementation plan with default-deny, per-pod rules, exceptions, verification results, and NIST alignment.
