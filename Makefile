@@ -61,6 +61,8 @@ validate: check-uv
 	uv run python scripts/validate_mcp_tools.py --summary-only --log-file .validate/mcp-tools.log || EXIT=1; \
 	echo "=== Validating skill design principles..."; \
 	uv run python scripts/validate_skills_tier2.py || EXIT=1; \
+	echo "=== Running spell check..."; \
+	$(MAKE) validate-spelling || EXIT=1; \
 	echo ""; \
 	echo "======================================================================"; \
 	echo "  Validation complete!"; \
