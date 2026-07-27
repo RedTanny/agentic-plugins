@@ -14,6 +14,13 @@ Identify product and version from user message. If unclear, ask. Look up lifecyc
 
 ## Prerequisites
 
+**Step 0 — Resolve scripts directory.** Before anything else, locate the helper scripts. They are inside the skill's `scripts/` subfolder. Run:
+```bash
+SCRIPTS_DIR="scripts"
+test -f "$SCRIPTS_DIR/rh_lifecycle.py" || { echo "Error: Scripts directory not found at $SCRIPTS_DIR"; exit 1; }
+```
+Use `$SCRIPTS_DIR` in all subsequent script calls.
+
 Python 3 — the script uses only the stdlib.
 
 ## When to Use This Skill
