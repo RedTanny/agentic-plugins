@@ -31,7 +31,4 @@ spec:
   primitives: []
   packages: []
   remotes:
-    - url: ${AI_OBSERVABILITY_MCP_URL}/mcp
-      environment_variables:
-        - description: AI observability MCP server base URL
-          name: AI_OBSERVABILITY_MCP_URL
+    - url: https://ai-observability.example.com/mcp

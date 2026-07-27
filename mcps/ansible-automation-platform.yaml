@@ -30,27 +30,9 @@ spec:
   primitives: []
   packages: []
   remotes:
-    - url: https://${AAP_MCP_SERVER}/job_management/mcp
-      environment_variables:
-        - description: AAP MCP server hostname
-          name: AAP_MCP_SERVER
-    - url: https://${AAP_MCP_SERVER}/inventory_management/mcp
-      environment_variables:
-        - description: AAP MCP server hostname
-          name: AAP_MCP_SERVER
-    - url: https://${AAP_MCP_SERVER}/configuration/mcp
-      environment_variables:
-        - description: AAP MCP server hostname
-          name: AAP_MCP_SERVER
-    - url: https://${AAP_MCP_SERVER}/security_compliance/mcp
-      environment_variables:
-        - description: AAP MCP server hostname
-          name: AAP_MCP_SERVER
-    - url: https://${AAP_MCP_SERVER}/system_monitoring/mcp
-      environment_variables:
-        - description: AAP MCP server hostname
-          name: AAP_MCP_SERVER
-    - url: https://${AAP_MCP_SERVER}/user_management/mcp
-      environment_variables:
-        - description: AAP MCP server hostname
-          name: AAP_MCP_SERVER
+    - url: https://aap-mcp-server.example.com/job_management/mcp
+    - url: https://aap-mcp-server.example.com/inventory_management/mcp
+    - url: https://aap-mcp-server.example.com/configuration/mcp
+    - url: https://aap-mcp-server.example.com/security_compliance/mcp
+    - url: https://aap-mcp-server.example.com/system_monitoring/mcp
+    - url: https://aap-mcp-server.example.com/user_management/mcp
