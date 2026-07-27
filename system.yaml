@@ -13,13 +13,11 @@ metadata:
     - red-hat
   annotations:
     agentic.redhat.com/repository: https://github.com/RHEcosystemAppEng/agentic-plugins
+    github.com/project-slug: https://github.com/RHEcosystemAppEng/agentic-plugins
   labels:
     agentic-plugins.redhat.com/version: "1.0"
     agentic-plugins.redhat.com/repo: "agentic-plugins"
-  links:
-    - url: https://github.com/RHEcosystemAppEng/agentic-plugins
-      title: Source Repository
-      icon: github
+
 spec:
   owner: group:redhat/ai5-marketplace
 
