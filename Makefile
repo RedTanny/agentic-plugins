@@ -1,4 +1,4 @@
-.PHONY: help install validate validate-structure validate-collection-schema validate-collection-compliance validate-skill-design validate-skill-design-changed validate-mcp-tools package clean check-uv
+.PHONY: help install validate validate-structure validate-collection-schema validate-collection-compliance validate-skill-design validate-skill-design-changed validate-mcp-tools validate-spelling package clean check-uv
 
 help:
 	@echo "agentic-plugins"
@@ -12,6 +12,7 @@ help:
 	@echo "  validate-skill-design         - Validate all skills (use PACK=rh-sre for a specific pack)"
 	@echo "  validate-skill-design-changed - Validate only changed skills (staged + unstaged, for local dev)"
 	@echo "  validate-mcp-tools            - Validate allowed-tools against live MCP servers (requires podman)"
+	@echo "  validate-spelling             - Run codespell spell check on all files"
 	@echo "  package                       - Package skills into ZIPs (output: dist/)"
 	@echo "  clean                         - Remove generated files"
 	@echo ""
@@ -60,6 +61,8 @@ validate: check-uv
 	uv run python scripts/validate_mcp_tools.py --summary-only --log-file .validate/mcp-tools.log || EXIT=1; \
 	echo "=== Validating skill design principles..."; \
 	uv run python scripts/validate_skills_tier2.py || EXIT=1; \
+	echo "=== Running spell check..."; \
+	$(MAKE) validate-spelling || EXIT=1; \
 	echo ""; \
 	echo "======================================================================"; \
 	echo "  Validation complete!"; \
@@ -97,6 +100,11 @@ validate-mcp-tools: check-uv
 	@echo "Validating MCP tool references against live servers..."
 	@uv run python scripts/validate_mcp_tools.py $(if $(PACK),$(PACK))
 	@echo "MCP tool validation complete!"
+
+validate-spelling: check-uv
+	@echo "Running spell check with codespell..."
+	@uv run codespell
+	@echo "Spell check passed!"
 
 package: check-uv
 	@uv run python scripts/package_skills.py
