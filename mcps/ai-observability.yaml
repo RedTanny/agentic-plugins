@@ -8,6 +8,8 @@ metadata:
     AI observability MCP server for monitoring and debugging AI/ML model
     inference, performance metrics, and serving runtime health on
     Red Hat OpenShift AI.
+  labels:
+    distribution: external
   annotations:
     backstage.io/source-location: >-
       url:https://github.com/RHEcosystemAppEng/agentic-plugins/blob/main/rh-ai-engineer/mcps.json

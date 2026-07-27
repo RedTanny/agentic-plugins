@@ -8,6 +8,8 @@ metadata:
     Red Hat OpenShift AI (RHOAI) MCP server for managing data science projects,
     model serving, model registry, workbenches, and ML pipelines on the
     OpenShift AI platform.
+  labels:
+    distribution: external
   annotations:
     backstage.io/source-location: >-
       url:https://github.com/RHEcosystemAppEng/agentic-plugins/blob/main/rh-ai-engineer/mcps.json

@@ -8,6 +8,8 @@ metadata:
     Ansible Automation Platform MCP server providing job management,
     inventory management, configuration, security compliance, system
     monitoring, and user management operations via remote HTTP endpoints.
+  labels:
+    distribution: external
   annotations:
     backstage.io/source-location: >-
       url:https://github.com/RHEcosystemAppEng/agentic-plugins/blob/main/rh-automation/mcps.json

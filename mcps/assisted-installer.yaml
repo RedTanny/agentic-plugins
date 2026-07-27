@@ -10,6 +10,8 @@ metadata:
     Assisted Installer API and managed service clusters (ROSA, ARO, OSD)
     via the OCM API. Handles creation, configuration, installation, and
     credential retrieval.
+  labels:
+    distribution: external
   annotations:
     backstage.io/source-location: >-
       url:https://github.com/RHEcosystemAppEng/agentic-plugins/blob/main/ocp-admin/mcps.json

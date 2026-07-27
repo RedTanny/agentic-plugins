@@ -8,6 +8,8 @@ metadata:
     Podman MCP server for container management operations.
     Provides container lifecycle management, image operations,
     and local container runtime interaction.
+  labels:
+    distribution: external
   annotations:
     backstage.io/source-location: >-
       url:https://github.com/RHEcosystemAppEng/agentic-plugins/blob/main/rh-developer/mcps.json

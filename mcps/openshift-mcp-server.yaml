@@ -9,6 +9,8 @@ metadata:
     clusters and its operators. Provides access to cluster resources, node metrics,
     configuration contexts, virtualization, Helm, observability, and service mesh
     toolsets depending on configuration.
+  labels:
+    distribution: external
   annotations:
     backstage.io/source-location: >-
       url:https://github.com/RHEcosystemAppEng/agentic-plugins/blob/main/ocp-admin/mcps.json
