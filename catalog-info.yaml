@@ -7,7 +7,7 @@ metadata:
     Root catalog entry point for the agentic-plugins repository.
     Points to all agentic pack locations and MCP server manifests
     for Compass ingestion.
-  labels:
+  annotations:
     agentic-plugins.redhat.com/version: "1.0"
     agentic-plugins.redhat.com/repo: "agentic-plugins"
 spec:
