@@ -35,8 +35,9 @@ spec:
     - claude-code
     - opencode
     - cursor
-  dependsOn:
+  partOf:
     - airesource:rh-ai-engineer/rh-ai-engineer
+  dependsOn:
     - mcpserver:agentic-plugins/openshift-mcp-server
     - mcpserver:agentic-plugins/ai-observability
     - mcpserver:agentic-plugins/rhoai

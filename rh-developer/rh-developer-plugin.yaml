@@ -43,3 +43,23 @@ spec:
     - mcpserver:agentic-plugins/podman
     - mcpserver:agentic-plugins/github
     - mcpserver:redhat/red-hat-lightspeed-mcp-server
+  partOf:
+    - system:default/agentic-plugins
+  hasPart:
+    - airesource:rh-developer/containerize-deploy
+    - airesource:rh-developer/debug-build
+    - airesource:rh-developer/debug-container
+    - airesource:rh-developer/debug-network
+    - airesource:rh-developer/debug-pipeline
+    - airesource:rh-developer/debug-pod
+    - airesource:rh-developer/debug-rbac
+    - airesource:rh-developer/debug-rhel
+    - airesource:rh-developer/debug-scc
+    - airesource:rh-developer/deploy
+    - airesource:rh-developer/detect-project
+    - airesource:rh-developer/helm-deploy
+    - airesource:rh-developer/incident-triage
+    - airesource:rh-developer/recommend-image
+    - airesource:rh-developer/rhel-deploy
+    - airesource:rh-developer/s2i-build
+    - airesource:rh-developer/validate-environment

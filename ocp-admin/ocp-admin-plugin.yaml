@@ -41,3 +41,13 @@ spec:
   dependsOn:
     - mcpserver:agentic-plugins/assisted-installer
     - mcpserver:agentic-plugins/openshift-mcp-server
+  partOf:
+    - system:default/agentic-plugins
+  hasPart:
+    - airesource:ocp-admin/cluster-creator
+    - airesource:ocp-admin/cluster-inventory
+    - airesource:ocp-admin/cluster-report
+    - airesource:ocp-admin/container-cve-validator
+    - airesource:ocp-admin/coreos-cve-validator
+    - airesource:ocp-admin/cve-recon
+    - airesource:ocp-admin/image-inspect

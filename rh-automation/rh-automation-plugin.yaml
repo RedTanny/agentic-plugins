@@ -40,3 +40,17 @@ spec:
     - cursor
   dependsOn:
     - mcpserver:agentic-plugins/ansible-automation-platform
+  partOf:
+    - system:default/agentic-plugins
+  hasPart:
+    - airesource:rh-automation/aap-mcp-validator
+    - airesource:rh-automation/execution-risk-analyzer
+    - airesource:rh-automation/execution-summary
+    - airesource:rh-automation/forensic-troubleshooter
+    - airesource:rh-automation/governance-assessor
+    - airesource:rh-automation/governance-executor
+    - airesource:rh-automation/governance-readiness-assessor
+    - airesource:rh-automation/governed-job-launcher
+    - airesource:rh-automation/host-fact-inspector
+    - airesource:rh-automation/job-failure-analyzer
+    - airesource:rh-automation/resolution-advisor

@@ -40,3 +40,12 @@ spec:
     - cursor
   dependsOn:
     - mcpserver:redhat/security-mcp-server
+  partOf:
+    - system:default/agentic-plugins
+  hasPart:
+    - airesource:rh-basic/red-hat-cve-explainer
+    - airesource:rh-basic/red-hat-diagnostics
+    - airesource:rh-basic/red-hat-get-started
+    - airesource:rh-basic/red-hat-product-lifecycle
+    - airesource:rh-basic/red-hat-security-mcp-setup
+    - airesource:rh-basic/red-hat-support-severity

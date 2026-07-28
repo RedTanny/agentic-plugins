@@ -34,6 +34,11 @@ spec:
     - claude-code
     - opencode
     - cursor
-  dependsOn:
+  partOf:
     - airesource:rh-automation/rh-automation
+  dependsOn:
     - mcpserver:agentic-plugins/ansible-automation-platform
+  dependencyOf:
+    - airesource:rh-automation/forensic-troubleshooter
+    - airesource:rh-automation/governance-assessor
+    - airesource:rh-automation/governance-executor

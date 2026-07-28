@@ -39,3 +39,16 @@ spec:
     - cursor
   dependsOn:
     - mcpserver:agentic-plugins/openshift-mcp-server
+  partOf:
+    - system:default/agentic-plugins
+  hasPart:
+    - airesource:rh-virt/vm-clone
+    - airesource:rh-virt/vm-create
+    - airesource:rh-virt/vm-delete
+    - airesource:rh-virt/vm-inventory
+    - airesource:rh-virt/vm-lifecycle-manager
+    - airesource:rh-virt/vm-rebalance
+    - airesource:rh-virt/vm-snapshot-create
+    - airesource:rh-virt/vm-snapshot-delete
+    - airesource:rh-virt/vm-snapshot-list
+    - airesource:rh-virt/vm-snapshot-restore

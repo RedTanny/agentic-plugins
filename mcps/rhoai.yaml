@@ -35,3 +35,18 @@ spec:
       version: git+https://github.com/opendatahub-io/rhoai-mcp@31576c61b6f59280704c86dde1e3e9ed79def5e5
       environment_variables: []
   remotes: []
+  partOf:
+    - system:default/agentic-plugins
+  dependencyOf:
+    - airesource:rh-ai-engineer/ai-observability
+    - airesource:rh-ai-engineer/debug-inference
+    - airesource:rh-ai-engineer/ds-project-setup
+    - airesource:rh-ai-engineer/guardrails-config
+    - airesource:rh-ai-engineer/model-deploy
+    - airesource:rh-ai-engineer/model-monitor
+    - airesource:rh-ai-engineer/model-registry
+    - airesource:rh-ai-engineer/nim-setup
+    - airesource:rh-ai-engineer/pipeline-manage
+    - airesource:rh-ai-engineer/rh-ai-engineer
+    - airesource:rh-ai-engineer/serving-runtime-config
+    - airesource:rh-ai-engineer/workbench-manage

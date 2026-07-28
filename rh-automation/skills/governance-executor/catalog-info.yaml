@@ -34,10 +34,11 @@ spec:
     - claude-code
     - opencode
     - cursor
-  dependsOn:
+  partOf:
     - airesource:rh-automation/rh-automation
-    - mcpserver:agentic-plugins/ansible-automation-platform
+  dependsOn:
     - airesource:rh-automation/aap-mcp-validator
     - airesource:rh-automation/execution-risk-analyzer
     - airesource:rh-automation/governed-job-launcher
     - airesource:rh-automation/execution-summary
+    - mcpserver:agentic-plugins/ansible-automation-platform

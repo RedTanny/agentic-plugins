@@ -38,6 +38,7 @@ spec:
     - claude-code
     - opencode
     - cursor
-  dependsOn:
+  partOf:
     - airesource:ocp-admin/ocp-admin
+  dependsOn:
     - mcpserver:agentic-plugins/openshift-mcp-server

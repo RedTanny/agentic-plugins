@@ -99,3 +99,9 @@ spec:
         - description: Red Hat offline token for API authentication
           name: OFFLINE_TOKEN
   remotes: []
+  partOf:
+    - system:default/agentic-plugins
+  dependencyOf:
+    - airesource:ocp-admin/cluster-creator
+    - airesource:ocp-admin/cluster-inventory
+    - airesource:ocp-admin/ocp-admin
