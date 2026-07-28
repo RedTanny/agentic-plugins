@@ -35,7 +35,6 @@ spec:
     - claude-code
     - opencode
     - cursor
-  partOf:
-    - airesource:rh-virt/rh-virt
   dependsOn:
+    - airesource:rh-virt/rh-virt
     - mcpserver:agentic-plugins/openshift-mcp-server

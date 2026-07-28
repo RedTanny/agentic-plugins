@@ -39,10 +39,9 @@ spec:
     - opencode
     - cursor
   dependsOn:
-    - mcpserver:agentic-plugins/ansible-automation-platform
-  partOf:
     - system:default/agentic-plugins
-  hasPart:
+    - mcpserver:agentic-plugins/ansible-automation-platform
+  dependencyOf:
     - airesource:rh-automation/aap-mcp-validator
     - airesource:rh-automation/execution-risk-analyzer
     - airesource:rh-automation/execution-summary

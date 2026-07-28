@@ -35,9 +35,8 @@ spec:
     - claude-code
     - opencode
     - cursor
-  partOf:
-    - airesource:rh-sre/rh-sre
   dependsOn:
+    - airesource:rh-sre/rh-sre
     - mcpserver:redhat/red-hat-lightspeed-mcp-server
     - mcpserver:agentic-plugins/ansible-automation-platform
   dependencyOf:

@@ -39,13 +39,12 @@ spec:
     - opencode
     - cursor
   dependsOn:
+    - system:default/agentic-plugins
     - mcpserver:agentic-plugins/openshift-mcp-server
     - mcpserver:agentic-plugins/podman
     - mcpserver:agentic-plugins/github
     - mcpserver:redhat/red-hat-lightspeed-mcp-server
-  partOf:
-    - system:default/agentic-plugins
-  hasPart:
+  dependencyOf:
     - airesource:rh-developer/containerize-deploy
     - airesource:rh-developer/debug-build
     - airesource:rh-developer/debug-container

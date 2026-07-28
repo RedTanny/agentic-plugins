@@ -38,10 +38,9 @@ spec:
     - opencode
     - cursor
   dependsOn:
-    - mcpserver:agentic-plugins/openshift-mcp-server
-  partOf:
     - system:default/agentic-plugins
-  hasPart:
+    - mcpserver:agentic-plugins/openshift-mcp-server
+  dependencyOf:
     - airesource:rh-virt/vm-clone
     - airesource:rh-virt/vm-create
     - airesource:rh-virt/vm-delete

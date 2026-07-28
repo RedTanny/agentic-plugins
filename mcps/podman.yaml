@@ -34,7 +34,7 @@ spec:
       version: 0.0.15
       environment_variables: []
   remotes: []
-  partOf:
+  dependsOn:
     - system:default/agentic-plugins
   dependencyOf:
     - airesource:rh-developer/containerize-deploy

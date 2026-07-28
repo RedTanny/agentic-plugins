@@ -19,7 +19,7 @@ metadata:
 
 spec:
   owner: group:redhat/ai5-marketplace
-  hasPart:
+  dependencyOf:
     - airesource:ocp-admin/ocp-admin
     - airesource:rh-sre/rh-sre
     - airesource:rh-virt/rh-virt

@@ -39,10 +39,9 @@ spec:
     - opencode
     - cursor
   dependsOn:
-    - mcpserver:redhat/security-mcp-server
-  partOf:
     - system:default/agentic-plugins
-  hasPart:
+    - mcpserver:redhat/security-mcp-server
+  dependencyOf:
     - airesource:rh-basic/red-hat-cve-explainer
     - airesource:rh-basic/red-hat-diagnostics
     - airesource:rh-basic/red-hat-get-started

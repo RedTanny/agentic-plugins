@@ -35,7 +35,6 @@ spec:
     - claude-code
     - opencode
     - cursor
-  partOf:
-    - airesource:rh-basic/rh-basic
   dependsOn:
+    - airesource:rh-basic/rh-basic
     - mcpserver:redhat/security-mcp-server

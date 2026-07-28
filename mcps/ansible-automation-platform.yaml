@@ -36,7 +36,7 @@ spec:
     - url: https://aap-mcp-server.example.com/security_compliance/mcp
     - url: https://aap-mcp-server.example.com/system_monitoring/mcp
     - url: https://aap-mcp-server.example.com/user_management/mcp
-  partOf:
+  dependsOn:
     - system:default/agentic-plugins
   dependencyOf:
     - airesource:rh-automation/aap-mcp-validator

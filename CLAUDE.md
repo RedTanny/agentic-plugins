@@ -91,22 +91,31 @@ catalog-info.yaml (root Location)
 
 #### Entity Relationships
 
-- **AiResource (plugin) → System**: Each pack plugin has `spec.system: agentic-plugins` (generates `partOf` relation)
-- **AiResource (skill) → AiResource (plugin)**: Each skill has `spec.dependsOn: [airesource:<pack>/<pack>]`
-- **AiResource (skill) → AiResource (skill)**: Orchestration skills reference other skills via `spec.dependsOn`
-- **AiResource → MCPServer**: Skills and plugins reference MCP servers via `spec.dependsOn: [mcpserver:rh-agentic-plugins-mcps/<server>]`
-- **MCPServer → System**: Each MCP server has `spec.system: rh-agentic-plugins-mcps`
-- **All entities → Group**: `spec.owner: group:redhat/ecosystem-appeng`
+All relationships use `dependsOn` / `dependencyOf`:
+
+> **Why not `partOf`/`hasPart`?** Compass only processes `partOf`/`hasPart` for standard Backstage kinds (Component, API, Resource). Custom kinds like `AiResource` and `MCPServer` can store these fields in `spec`, but they are not processed into the relation graph. Only `dependsOn`/`dependencyOf` and `ownedBy`/`ownerOf` generate actual relations for custom kinds.
+
+Concrete relationships in this repo:
+
+- **Skill → Plugin**: `dependsOn` / `dependencyOf` (a skill belongs to its plugin)
+- **Plugin → System**: `dependsOn` / `dependencyOf` (a plugin belongs to the system)
+- **MCPServer → System**: `dependsOn` / `dependencyOf` (an MCP server belongs to the system)
+- **Skill → MCPServer**: `dependsOn` / `dependencyOf` (a skill uses an MCP server)
+- **Plugin → MCPServer**: `dependsOn` / `dependencyOf` (a plugin uses an MCP server)
+- **Skill → Skill**: `dependsOn` / `dependencyOf` (orchestration skills invoke other skills)
+- **All entities → Group**: `spec.owner: group:redhat/ai5-marketplace`
+
+> **Bidirectional declaration policy:** Compass does not auto-generate inverse relations for custom entity kinds such as `AiResource` and `MCPServer` (tracked as COMPASS-1288). Until this is resolved upstream, we explicitly declare **both directions** of every relationship in our manifests. For example, if a skill declares `dependsOn: [airesource:rh-sre/rh-sre]`, the plugin must also declare `dependencyOf: [airesource:rh-sre/<skill>]`. When adding or modifying a relationship, always update both the source and target manifests.
 
 #### Namespaces
 
-Each pack uses its own namespace matching the pack name (e.g., `rh-sre`, `ocp-admin`). All MCP servers share the namespace `rh-agentic-plugins-mcps`. The root System `agentic-plugins` uses the `default` namespace.
+Each pack uses its own namespace matching the pack name (e.g., `rh-sre`, `ocp-admin`). All MCP servers share the namespace `agentic-plugins`. The root System `agentic-plugins` uses the `default` namespace.
 
 #### Entity Reference Formats
 
 - Skills: `airesource:<pack-namespace>/<skill-name>`
 - Pack plugins: `airesource:<pack-namespace>/<pack-name>`
-- MCP servers: `mcpserver:rh-agentic-plugins-mcps/<server-name>`
+- MCP servers: `mcpserver:agentic-plugins/<server-name>`
 
 #### Adding Compass Manifests for a New Skill
 
@@ -134,7 +143,7 @@ metadata:
 spec:
   type: skill
   lifecycle: beta
-  owner: group:redhat/ecosystem-appeng
+  owner: group:redhat/ai5-marketplace
   disciplines:
     - <discipline>
   categories:
@@ -145,10 +154,15 @@ spec:
     - cursor
   dependsOn:
     - airesource:<pack-name>/<pack-name>
-    # Add mcpserver and airesource dependencies as needed
+    # Add mcpserver and airesource (skill) dependencies as needed
+    - mcpserver:agentic-plugins/<server-name>
 ```
 
-Then add the file as a target in the pack's `catalog-info.yaml` Location.
+Then update **both sides** of every relationship:
+1. Add the file as a target in the pack's `catalog-info.yaml` Location
+2. Add the skill to the plugin's `dependencyOf` list in `<pack>-plugin.yaml`
+3. Add the skill to each referenced MCP server's `dependencyOf` list in `mcps/<server>.yaml`
+4. If the skill depends on other skills, add `dependencyOf` entries in those skills' manifests
 
 ## Contributing
 

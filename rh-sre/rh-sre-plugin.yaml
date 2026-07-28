@@ -40,11 +40,10 @@ spec:
     - opencode
     - cursor
   dependsOn:
+    - system:default/agentic-plugins
     - mcpserver:redhat/red-hat-lightspeed-mcp-server
     - mcpserver:agentic-plugins/ansible-automation-platform
-  partOf:
-    - system:default/agentic-plugins
-  hasPart:
+  dependencyOf:
     - airesource:rh-sre/cve-impact
     - airesource:rh-sre/cve-validation
     - airesource:rh-sre/execution-summary

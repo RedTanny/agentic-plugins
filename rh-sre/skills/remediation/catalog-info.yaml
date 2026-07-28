@@ -36,9 +36,8 @@ spec:
     - claude-code
     - opencode
     - cursor
-  partOf:
-    - airesource:rh-sre/rh-sre
   dependsOn:
+    - airesource:rh-sre/rh-sre
     - airesource:rh-sre/mcp-lightspeed-validator
     - airesource:rh-sre/mcp-aap-validator
     - airesource:rh-sre/cve-impact

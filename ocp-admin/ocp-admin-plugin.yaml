@@ -39,11 +39,10 @@ spec:
     - opencode
     - cursor
   dependsOn:
+    - system:default/agentic-plugins
     - mcpserver:agentic-plugins/assisted-installer
     - mcpserver:agentic-plugins/openshift-mcp-server
-  partOf:
-    - system:default/agentic-plugins
-  hasPart:
+  dependencyOf:
     - airesource:ocp-admin/cluster-creator
     - airesource:ocp-admin/cluster-inventory
     - airesource:ocp-admin/cluster-report

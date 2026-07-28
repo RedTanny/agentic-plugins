@@ -37,7 +37,6 @@ spec:
     - claude-code
     - opencode
     - cursor
-  partOf:
-    - airesource:ocp-admin/ocp-admin
   dependsOn:
+    - airesource:ocp-admin/ocp-admin
     - mcpserver:agentic-plugins/assisted-installer

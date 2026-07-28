@@ -32,7 +32,7 @@ spec:
   packages: []
   remotes:
     - url: https://ai-observability.example.com/mcp
-  partOf:
+  dependsOn:
     - system:default/agentic-plugins
   dependencyOf:
     - airesource:rh-ai-engineer/ai-observability

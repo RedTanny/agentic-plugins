@@ -37,5 +37,5 @@ spec:
     - claude-code
     - opencode
     - cursor
-  partOf:
+  dependsOn:
     - airesource:ocp-admin/ocp-admin

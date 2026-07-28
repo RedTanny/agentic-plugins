@@ -37,9 +37,8 @@ spec:
     - claude-code
     - opencode
     - cursor
-  partOf:
-    - airesource:rh-developer/rh-developer
   dependsOn:
+    - airesource:rh-developer/rh-developer
     - airesource:rh-developer/debug-scc
     - airesource:rh-developer/debug-rbac
     - airesource:rh-developer/debug-pod

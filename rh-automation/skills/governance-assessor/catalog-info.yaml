@@ -34,9 +34,8 @@ spec:
     - claude-code
     - opencode
     - cursor
-  partOf:
-    - airesource:rh-automation/rh-automation
   dependsOn:
+    - airesource:rh-automation/rh-automation
     - airesource:rh-automation/aap-mcp-validator
     - airesource:rh-automation/governance-readiness-assessor
     - airesource:rh-automation/execution-summary

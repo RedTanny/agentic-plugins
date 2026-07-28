@@ -34,9 +34,8 @@ spec:
     - claude-code
     - opencode
     - cursor
-  partOf:
-    - airesource:rh-automation/rh-automation
   dependsOn:
+    - airesource:rh-automation/rh-automation
     - mcpserver:agentic-plugins/ansible-automation-platform
   dependencyOf:
     - airesource:rh-automation/forensic-troubleshooter
