@@ -16,8 +16,13 @@
   - [OpenClaw](https://github.com/openclaw/openclaw)
   - [OpenCode](https://github.com/opencode-ai/opencode)
 - [Lola](https://github.com/LobsterTrap/lola) CLI installed
-- [Podman](https://podman.io/) (or Docker) — the MCP servers run as containers (see [OS-specific setup](#os-specific-setup))
+- [Podman](https://podman.io/) (or Docker) — the MCP servers run as containers
 - A Red Hat account with access to [cloud.redhat.com](https://cloud.redhat.com)
+- For security skills (`/container-cve-validator`, `/coreos-cve-validator`, `/image-inspect`):
+  - [Python requests](https://pypi.org/project/requests/) (`pip install requests`)
+  - [regctl](https://github.com/regclient/regclient)
+  - [cosign](https://github.com/sigstore/cosign)
+  - [syft](https://github.com/anchore/syft) (optional, fallback SBOM generation)
 
 ### Step 1: Install the skill pack
 
@@ -63,56 +68,6 @@ To make these persistent, add them to your shell profile (`~/.bashrc`, `~/.zshrc
 ### Step 3: Use the skills
 
 The pack provides 7 skills. See the [ocp-admin README](../README.md) for the full list with descriptions and usage examples.
-
-### OS-specific setup
-
-#### Linux (Fedora / RHEL)
-
-**Podman** (required for MCP servers):
-
-```bash
-sudo dnf install -y podman
-```
-
-**Additional tools for security skills** (`/container-cve-validator`, `/coreos-cve-validator`, `/image-inspect`):
-
-```bash
-# Required
-pip install requests
-
-# regctl
-curl -L https://github.com/regclient/regclient/releases/latest/download/regctl-linux-amd64 -o ~/.local/bin/regctl
-chmod +x ~/.local/bin/regctl
-
-# cosign
-curl -L https://github.com/sigstore/cosign/releases/latest/download/cosign-linux-amd64 -o ~/.local/bin/cosign
-chmod +x ~/.local/bin/cosign
-
-# Optional (fallback SBOM generation)
-curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b ~/.local/bin
-```
-
-#### macOS
-
-**Podman** (required for MCP servers):
-
-```bash
-brew install podman
-podman machine init
-podman machine start
-```
-
-**Additional tools for security skills** (`/container-cve-validator`, `/coreos-cve-validator`, `/image-inspect`):
-
-```bash
-# Required
-pip install requests
-brew install regclient/tap/regctl
-brew install sigstore/tap/cosign
-
-# Optional (fallback SBOM generation)
-brew install anchore/syft/syft
-```
 
 ### Uninstall
 
