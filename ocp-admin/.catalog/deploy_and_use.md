@@ -1,6 +1,6 @@
 <!--
-  Deploy & Use instructions for the ocp-admin skill pack.
-  Golden sources: skills/*/SKILL.md, README.md, AGENTS.md, mcps.json
+  Catalog fragment — maintain via create-collection workflow (assistant + maintainer + PR review).
+  Golden sources: skills/*/SKILL.md, README.md, AGENTS.md
 -->
 
 ## Deploy and use
@@ -13,7 +13,6 @@
   - [GitHub Copilot](https://docs.github.com/en/copilot) (CLI or VS Code)
   - [Cursor](https://www.cursor.com/)
   - [Gemini CLI](https://github.com/google-gemini/gemini-cli)
-  - [OpenClaw](https://github.com/openclaw/openclaw)
   - [OpenCode](https://github.com/opencode-ai/opencode)
 - [Lola](https://github.com/LobsterTrap/lola) CLI installed
 - [Podman](https://podman.io/) (or Docker) — the MCP servers run as containers
@@ -31,7 +30,7 @@
 lola market add rh-agentic-collection https://raw.githubusercontent.com/RHEcosystemAppEng/agentic-catalog/main/marketplace/rh-agentic-collection.yml
 
 # Install the ocp-admin pack (replace claude-code with your AI assistant)
-# Valid targets: claude-code, copilot-cli, copilot-vscode, cursor, gemini-cli, openclaw, opencode
+# Valid targets: claude-code, copilot-cli, copilot-vscode, cursor, gemini-cli, opencode
 lola install ocp-admin -a claude-code
 ```
 
