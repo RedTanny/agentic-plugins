@@ -27,7 +27,46 @@ spec:
   lifecycle: beta
   owner: group:redhat/ai5-marketplace
   system: default/agentic-plugins
-  primitives: []
+  primitives:
+    - type: tool
+      name: container_inspect
+      description: Display low-level information and configuration of a container.
+    - type: tool
+      name: container_list
+      description: List running containers with status information.
+    - type: tool
+      name: container_logs
+      description: Display logs of a container by ID or name.
+    - type: tool
+      name: container_remove
+      description: Remove a container by ID or name.
+    - type: tool
+      name: container_run
+      description: Run a container with a specified image.
+    - type: tool
+      name: container_stop
+      description: Stop a running container by ID or name.
+    - type: tool
+      name: image_build
+      description: Build an image from a Dockerfile, Podmanfile, or Containerfile.
+    - type: tool
+      name: image_list
+      description: List container images on the local machine.
+    - type: tool
+      name: image_pull
+      description: Pull a container image from a registry to local storage.
+    - type: tool
+      name: image_push
+      description: Push a container image from local storage to a registry.
+    - type: tool
+      name: image_remove
+      description: Remove a container image from local storage.
+    - type: tool
+      name: network_list
+      description: List all available container networks.
+    - type: tool
+      name: volume_list
+      description: List all available container volumes.
   packages:
     - type: npx
       name: podman-mcp-server

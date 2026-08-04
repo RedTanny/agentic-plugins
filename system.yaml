@@ -15,7 +15,7 @@ metadata:
     agentic-plugins.redhat.com/version: "1.0"
     agentic-plugins.redhat.com/repo: "agentic-plugins"
     agentic.redhat.com/repository: https://github.com/RHEcosystemAppEng/agentic-plugins
-    github.com/project-slug: https://github.com/RHEcosystemAppEng/agentic-plugins
+    github.com/project-slug: RHEcosystemAppEng/agentic-plugins
 
 spec:
   owner: group:redhat/ai5-marketplace

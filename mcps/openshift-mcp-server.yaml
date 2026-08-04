@@ -33,20 +33,62 @@ spec:
       name: configuration_contexts_list
       description: List available kubeconfig contexts for cluster access.
     - type: tool
-      name: resources_get
-      description: Get details of a specific Kubernetes resource.
+      name: configuration_view
+      description: Get the current Kubernetes configuration as kubeconfig YAML.
     - type: tool
-      name: resources_list
-      description: List Kubernetes resources by type and namespace.
-    - type: tool
-      name: nodes_top
-      description: Get node resource usage metrics (CPU, memory).
+      name: events_list
+      description: List Kubernetes events from all namespaces in the cluster.
     - type: tool
       name: namespaces_list
       description: List all namespaces in the cluster.
     - type: tool
+      name: nodes_log
+      description: Get logs from a Kubernetes node (kubelet, kube-proxy, or system logs).
+    - type: tool
+      name: nodes_stats_summary
+      description: Get detailed resource usage statistics from a node via kubelet Summary API.
+    - type: tool
+      name: nodes_top
+      description: List node resource consumption (CPU and memory) from Metrics Server.
+    - type: tool
+      name: pods_delete
+      description: Delete a pod in a specified namespace.
+    - type: tool
+      name: pods_exec
+      description: Execute a command in a pod container.
+    - type: tool
+      name: pods_get
+      description: Get details of a specific pod.
+    - type: tool
       name: pods_list
-      description: List pods with status and resource information.
+      description: List all pods in the cluster from all namespaces.
+    - type: tool
+      name: pods_list_in_namespace
+      description: List all pods in a specified namespace.
+    - type: tool
+      name: pods_log
+      description: Get logs from a pod container.
+    - type: tool
+      name: pods_run
+      description: Run a new pod with a specified container image.
+    - type: tool
+      name: pods_top
+      description: List pod resource consumption (CPU and memory) from Metrics Server.
+    - type: tool
+      name: resources_create_or_update
+      description: Create or update a Kubernetes resource from YAML or JSON.
+    - type: tool
+      name: resources_delete
+      description: Delete a Kubernetes resource by kind and name.
+    - type: tool
+      name: resources_get
+      description: Get details of a specific Kubernetes resource.
+    - type: tool
+      name: resources_list
+      description: List Kubernetes resources by API version and kind.
+    - type: tool
+      name: resources_scale
+      description: Get or update the scale of a Kubernetes resource.
   packages:
     - type: container
       registry_name: quay.io

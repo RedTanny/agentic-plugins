@@ -21,7 +21,6 @@ agentic-plugins/
 ├── rh-basic/            # Getting started pack
 ├── rh-ai-engineer/      # AI Engineering pack
 ├── rh-automation/       # Automation pack
-├── rh-support-engineer/ # Support engineering pack
 ├── mcps/                # MCP server Compass manifests (System + 9 MCPServer entities)
 ├── eval/                # Skill evaluation reports (report.json + report.md per skill)
 ├── scripts/             # Validation and CI helper scripts

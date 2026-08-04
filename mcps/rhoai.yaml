@@ -28,7 +28,280 @@ spec:
   lifecycle: beta
   owner: group:redhat/ai5-marketplace
   system: default/agentic-plugins
-  primitives: []
+  primitives:
+    - type: tool
+      name: analyze_training_failure
+      description: Analyze a training failure and suggest remediation.
+    - type: tool
+      name: check_deployment_prerequisites
+      description: Pre-flight checks before model deployment.
+    - type: tool
+      name: check_training_prerequisites
+      description: Check prerequisites before starting a training job.
+    - type: tool
+      name: cluster_summary
+      description: Get a compact cluster overview optimized for context windows.
+    - type: tool
+      name: create_data_science_project
+      description: Create a new Data Science Project.
+    - type: tool
+      name: create_pipeline_server
+      description: Create a pipeline server for a Data Science Project.
+    - type: tool
+      name: create_runtime
+      description: Create a new ClusterTrainingRuntime.
+    - type: tool
+      name: create_s3_data_connection
+      description: Create an S3 data connection.
+    - type: tool
+      name: create_serving_runtime
+      description: Create a serving runtime from a platform template.
+    - type: tool
+      name: create_storage
+      description: Create a new persistent storage volume (PVC).
+    - type: tool
+      name: create_workbench
+      description: Create a new workbench (notebook environment).
+    - type: tool
+      name: delete_data_connection
+      description: Delete a data connection.
+    - type: tool
+      name: delete_data_science_project
+      description: Delete a Data Science Project.
+    - type: tool
+      name: delete_inference_service
+      description: Delete a deployed model.
+    - type: tool
+      name: delete_pipeline_server
+      description: Delete the pipeline server from a Data Science Project.
+    - type: tool
+      name: delete_runtime
+      description: Delete a ClusterTrainingRuntime.
+    - type: tool
+      name: delete_storage
+      description: Delete a persistent storage volume (PVC).
+    - type: tool
+      name: delete_training_job
+      description: Delete a training job.
+    - type: tool
+      name: delete_workbench
+      description: Delete a workbench.
+    - type: tool
+      name: deploy_model
+      description: Deploy a model as an InferenceService.
+    - type: tool
+      name: deploy_quickstart
+      description: Deploy a Red Hat AI Quickstart to the cluster.
+    - type: tool
+      name: diagnose_resource
+      description: Comprehensive diagnostic for any resource in one call.
+    - type: tool
+      name: estimate_resources
+      description: Estimate GPU and memory requirements for training.
+    - type: tool
+      name: estimate_serving_resources
+      description: Estimate GPU/memory/CPU requirements for model serving.
+    - type: tool
+      name: explore_cluster
+      description: Complete cluster exploration in one call.
+    - type: tool
+      name: find_benchmarks_by_gpu
+      description: Find all benchmarks for a specific GPU type.
+    - type: tool
+      name: fix_pvc_permissions
+      description: Fix permissions on a PVC for training jobs.
+    - type: tool
+      name: get_catalog_model_artifacts
+      description: Get artifacts (storage URIs) for a model in the Model Catalog.
+    - type: tool
+      name: get_cluster_resources
+      description: Get cluster-wide compute resources available for training.
+    - type: tool
+      name: get_data_connection
+      description: Get detailed information about a data connection.
+    - type: tool
+      name: get_deployment_config
+      description: Generate Kubernetes deployment YAML configs for a recommended model.
+    - type: tool
+      name: get_inference_service
+      description: Get detailed information about a deployed model.
+    - type: tool
+      name: get_job_events
+      description: Get Kubernetes events for a training job.
+    - type: tool
+      name: get_job_spec
+      description: Get the complete specification of a training job.
+    - type: tool
+      name: get_model_artifacts
+      description: Get artifacts (storage URIs) for a model version.
+    - type: tool
+      name: get_model_benchmarks
+      description: Get benchmark data for a model.
+    - type: tool
+      name: get_model_endpoint
+      description: Get the inference endpoint URL for a deployed model.
+    - type: tool
+      name: get_model_version
+      description: Get detailed information about a specific model version.
+    - type: tool
+      name: get_pipeline_server
+      description: Get the pipeline server status for a Data Science Project.
+    - type: tool
+      name: get_project_details
+      description: Get detailed information about a Data Science Project.
+    - type: tool
+      name: get_quickstart_readme
+      description: Get the README.md content for a specific quickstart.
+    - type: tool
+      name: get_registered_model
+      description: Get detailed information about a registered model.
+    - type: tool
+      name: get_resource
+      description: Get any RHOAI resource by type.
+    - type: tool
+      name: get_runtime_details
+      description: Get detailed information about a training runtime.
+    - type: tool
+      name: get_training_job
+      description: Get detailed information about a specific training job.
+    - type: tool
+      name: get_training_logs
+      description: Get logs from a training job.
+    - type: tool
+      name: get_training_progress
+      description: Get real-time training progress for a job.
+    - type: tool
+      name: get_validation_metrics
+      description: Get validation metrics for a specific model version.
+    - type: tool
+      name: get_workbench
+      description: Get detailed information about a workbench.
+    - type: tool
+      name: get_workbench_url
+      description: Get the access URL for a workbench.
+    - type: tool
+      name: list_available_quickstarts
+      description: List all available Red Hat AI Quickstarts.
+    - type: tool
+      name: list_catalog_sources
+      description: List available sources in the Model Catalog.
+    - type: tool
+      name: list_data_connections
+      description: List data connections in a Data Science Project with pagination.
+    - type: tool
+      name: list_data_science_projects
+      description: List Data Science Projects in the cluster with pagination.
+    - type: tool
+      name: list_inference_services
+      description: List deployed models in a Data Science Project with pagination.
+    - type: tool
+      name: list_model_versions
+      description: List all versions of a registered model with pagination.
+    - type: tool
+      name: list_notebook_images
+      description: List available notebook images.
+    - type: tool
+      name: list_registered_models
+      description: List registered models in the Model Registry with pagination.
+    - type: tool
+      name: list_resource_names
+      description: List just resource names without full metadata.
+    - type: tool
+      name: list_resources
+      description: List any RHOAI resource type.
+    - type: tool
+      name: list_serving_runtimes
+      description: List available model serving runtimes.
+    - type: tool
+      name: list_storage
+      description: List persistent storage (PVCs) in a Data Science Project with pagination.
+    - type: tool
+      name: list_tool_categories
+      description: List all available tool categories with descriptions.
+    - type: tool
+      name: list_training_jobs
+      description: List training jobs in a namespace with pagination.
+    - type: tool
+      name: list_training_runtimes
+      description: List available training runtimes.
+    - type: tool
+      name: list_workbenches
+      description: List workbenches in a Data Science Project with pagination.
+    - type: tool
+      name: manage_checkpoints
+      description: Get checkpoint information for a training job.
+    - type: tool
+      name: manage_resource
+      description: Perform lifecycle actions on any resource type.
+    - type: tool
+      name: multi_resource_status
+      description: Get status for multiple resources in a single call.
+    - type: tool
+      name: prepare_model_deployment
+      description: Complete pre-flight preparation for model deployment in one call.
+    - type: tool
+      name: prepare_training
+      description: Complete pre-flight setup for a training job in a single call.
+    - type: tool
+      name: project_summary
+      description: Get a compact project status optimized for context windows.
+    - type: tool
+      name: recommend_model
+      description: Get LLM model recommendations from Neural Navigator.
+    - type: tool
+      name: recommend_serving_runtime
+      description: Recommend the best serving runtime for a model.
+    - type: tool
+      name: resource_status
+      description: Get quick status check for any resource.
+    - type: tool
+      name: resume_training_job
+      description: Resume a suspended training job.
+    - type: tool
+      name: run_container_training_job
+      description: Run a training job using a custom container image.
+    - type: tool
+      name: set_model_serving_mode
+      description: Set the model serving mode for a project.
+    - type: tool
+      name: setup_hf_credentials
+      description: Set up HuggingFace credentials for model/dataset access.
+    - type: tool
+      name: setup_nfs_storage
+      description: Get guidance on setting up NFS storage for distributed training.
+    - type: tool
+      name: setup_training_runtime
+      description: Set up a ClusterTrainingRuntime.
+    - type: tool
+      name: setup_training_storage
+      description: Create a PVC for training checkpoints and data.
+    - type: tool
+      name: start_workbench
+      description: Start a stopped workbench.
+    - type: tool
+      name: stop_workbench
+      description: Stop a running workbench.
+    - type: tool
+      name: suggest_tools
+      description: Get recommended tools and workflow for a given intent.
+    - type: tool
+      name: suspend_training_job
+      description: Suspend a running training job.
+    - type: tool
+      name: test_model_endpoint
+      description: "Test a deployed model's inference endpoint."
+    - type: tool
+      name: train
+      description: Create a training job for model fine-tuning.
+    - type: tool
+      name: training
+      description: Unified training operations using action parameter.
+    - type: tool
+      name: validate_training_config
+      description: Validate a training configuration before job creation.
+    - type: tool
+      name: wait_for_job_completion
+      description: Wait for a training job to reach a target status.
   packages:
     - type: uvx
       name: rhoai-mcp
