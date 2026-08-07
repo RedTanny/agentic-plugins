@@ -14,6 +14,13 @@ Identify product and version from user message. If unclear, ask. Look up lifecyc
 
 ## Prerequisites
 
+**Step 0 — Resolve scripts directory.** Before anything else, locate the helper scripts. They are inside the skill's `scripts/` subfolder. Run:
+```bash
+SCRIPTS_DIR="scripts"
+test -f "$SCRIPTS_DIR/rh_lifecycle.py" || { echo "Error: Scripts directory not found at $SCRIPTS_DIR"; exit 1; }
+```
+Use `$SCRIPTS_DIR` in all subsequent script calls.
+
 Python 3 — the script uses only the stdlib.
 
 ## When to Use This Skill
@@ -25,7 +32,7 @@ When the user asks about lifecycle status, support phases, or EOL dates for any 
 1. Identify product and version from the user message.
 2. Run the lifecycle script via Bash:
    ```
-   python rh-basic/skills/red-hat-product-lifecycle/scripts/rh_lifecycle.py "Product Name Version"
+   python $SCRIPTS_DIR/rh_lifecycle.py "Product Name Version"
    ```
    The script queries `https://access.redhat.com/product-life-cycles/api/v1/products` and returns JSON to stdout.
    Errors are on stderr (JSON with `"error"` key); exit code 1 on failure.
@@ -48,7 +55,7 @@ Dates are `YYYY-MM-DD`; `"N/A"` means no date; `"Ongoing"` means open-ended.
 
 ## Dependencies
 
-Script: `rh-basic/skills/red-hat-product-lifecycle/scripts/rh_lifecycle.py`
+Script: `$SCRIPTS_DIR/rh_lifecycle.py`
 
 ## Lifecycle Phase Reference
 
