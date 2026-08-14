@@ -31,10 +31,7 @@ spec:
     - automation
   categories:
     - automation
-  agents:
-    - claude-code
-    - opencode
-    - cursor
+  agents: []
   dependsOn:
     - airesource:rh-sre/rh-sre
     - mcpserver:redhat/red-hat-lightspeed-mcp-server

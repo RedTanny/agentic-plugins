@@ -31,10 +31,7 @@ spec:
     - devops
   categories:
     - configuration
-  agents:
-    - claude-code
-    - opencode
-    - cursor
+  agents: []
   dependsOn:
     - airesource:rh-basic/rh-basic
     - mcpserver:redhat/security-mcp-server

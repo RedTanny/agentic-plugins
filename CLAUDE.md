@@ -19,9 +19,7 @@ agentic-plugins/
 ├── ocp-admin/           # OpenShift administration pack
 ├── rh-virt/             # Virtualization management pack
 ├── rh-basic/            # Getting started pack
-├── rh-ai-engineer/      # AI Engineering pack
-├── rh-automation/       # Automation pack
-├── mcps/                # MCP server Compass manifests (System + 9 MCPServer entities)
+├── mcps/                # MCP server Compass manifests (3 MCPServer entities)
 ├── eval/                # Skill evaluation reports (report.json + report.md per skill)
 ├── scripts/             # Validation and CI helper scripts
 ├── catalog/             # JSON Schema for .catalog/collection.yaml validation
@@ -66,10 +64,10 @@ The repository is registered in [Red Hat Compass](https://compass.redhat.com) (i
 
 | Kind | Purpose | spec.type | Count |
 |------|---------|-----------|-------|
-| **Location** | Index that references other manifest files | — | 9 (1 root + 7 packs + 1 mcps) |
-| **System** | Top-level grouping for the repository and MCP servers | — | 2 (`agentic-plugins`, `rh-agentic-plugins-mcps`) |
-| **AiResource** | Skills and pack definitions | `plugin` (packs) / `skill` (skills) / `rule` | 7 packs + 75 skills |
-| **MCPServer** | MCP server configurations | `local` | 9 |
+| **Location** | Index that references other manifest files | — | 6 (1 root + 4 packs + 1 mcps) |
+| **System** | Top-level grouping for the repository | — | 1 (`agentic-plugins`) |
+| **AiResource** | Skills and pack definitions | `plugin` (packs) / `skill` (skills) | 4 packs + 36 skills |
+| **MCPServer** | MCP server configurations | `local` / `remote` | 3 |
 
 #### Location Hierarchy
 
@@ -81,11 +79,8 @@ catalog-info.yaml (root Location)
 ├── ocp-admin/catalog-info.yaml         → Location → ocp-admin-plugin.yaml + 7 skills
 ├── rh-sre/catalog-info.yaml            → Location → rh-sre-plugin.yaml + 13 skills
 ├── rh-virt/catalog-info.yaml           → Location → rh-virt-plugin.yaml + 10 skills
-├── rh-developer/catalog-info.yaml      → Location → rh-developer-plugin.yaml + 17 skills
 ├── rh-basic/catalog-info.yaml          → Location → rh-basic-plugin.yaml + 6 skills
-├── rh-ai-engineer/catalog-info.yaml    → Location → rh-ai-engineer-plugin.yaml + 11 skills
-├── rh-automation/catalog-info.yaml     → Location → rh-automation-plugin.yaml + 11 skills
-└── mcps/catalog-info.yaml              → Location → system.yaml + 9 MCPServers
+└── mcps/catalog-info.yaml              → Location → 3 MCPServers
 ```
 
 #### Entity Relationships

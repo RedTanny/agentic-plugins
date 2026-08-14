@@ -33,9 +33,6 @@ spec:
   categories:
     - security
     - inspection
-  agents:
-    - claude-code
-    - opencode
-    - cursor
+  agents: []
   dependsOn:
     - airesource:ocp-admin/ocp-admin

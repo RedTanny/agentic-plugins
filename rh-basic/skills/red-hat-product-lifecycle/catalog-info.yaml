@@ -31,10 +31,7 @@ spec:
     - support
   categories:
     - lifecycle-management
-  agents:
-    - claude-code
-    - opencode
-    - cursor
+  agents: []
   dependsOn:
     - airesource:rh-basic/rh-basic
     - mcpserver:redhat/security-mcp-server

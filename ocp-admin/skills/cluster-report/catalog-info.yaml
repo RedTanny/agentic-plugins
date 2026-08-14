@@ -34,10 +34,7 @@ spec:
   categories:
     - monitoring
     - reporting
-  agents:
-    - claude-code
-    - opencode
-    - cursor
+  agents: []
   dependsOn:
     - airesource:ocp-admin/ocp-admin
     - mcpserver:agentic-plugins/openshift-mcp-server

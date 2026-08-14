@@ -32,10 +32,7 @@ spec:
     - security
   categories:
     - remediation
-  agents:
-    - claude-code
-    - opencode
-    - cursor
+  agents: []
   dependsOn:
     - airesource:rh-sre/rh-sre
     - airesource:rh-sre/mcp-lightspeed-validator

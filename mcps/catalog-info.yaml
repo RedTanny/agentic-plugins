@@ -14,7 +14,3 @@ spec:
     - ./openshift-mcp-server.yaml
     - ./assisted-installer.yaml
     - ./ansible-automation-platform.yaml
-    - ./ai-observability.yaml
-    - ./rhoai.yaml
-    - ./podman.yaml
-    - ./github.yaml

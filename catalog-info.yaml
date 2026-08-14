@@ -18,9 +18,6 @@ spec:
     - ./ocp-admin/catalog-info.yaml
     - ./rh-sre/catalog-info.yaml
     - ./rh-virt/catalog-info.yaml
-    - ./rh-developer/catalog-info.yaml
     - ./rh-basic/catalog-info.yaml
-    - ./rh-ai-engineer/catalog-info.yaml
-    - ./rh-automation/catalog-info.yaml
     # MCP Servers Location
     - ./mcps/catalog-info.yaml

@@ -33,10 +33,7 @@ spec:
   categories:
     - automation
     - provisioning
-  agents:
-    - claude-code
-    - opencode
-    - cursor
+  agents: []
   dependsOn:
     - airesource:ocp-admin/ocp-admin
     - mcpserver:agentic-plugins/assisted-installer
