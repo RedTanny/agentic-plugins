@@ -4,16 +4,15 @@
 -->
 
 ## Deploy and use
-**Note:** This skill pack is released as Developer Preview. Developer Preview features provide early access to functionality in advance of possible inclusion in a Red Hat product offering. For more information about the support scope of Red Hat Developer Preview features, see Developer Preview Support Scope.
+**Note:** This skill pack is released as Developer Preview. Developer Preview features provide early access to functionality in advance of possible inclusion in a Red Hat product offering. For more information about the support scope of Red Hat Developer Preview features, see [Developer Preview Support Scope](https://access.redhat.com/support/offerings/devpreview).
 
 ### Prerequisites
 
 - At least one supported AI coding assistant:
-  - [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (CLI or IDE extension)
-  - [GitHub Copilot](https://docs.github.com/en/copilot) (CLI or VS Code)
+  - [Claude Code](https://claude.com/product/claude-code) (CLI or IDE extension)
+  - [GitHub Copilot](https://github.com/features/copilot) (CLI or VS Code)
   - [Cursor](https://www.cursor.com/)
-  - [Gemini CLI](https://github.com/google-gemini/gemini-cli)
-  - [OpenCode](https://github.com/opencode-ai/opencode)
+  - [OpenCode](https://opencode.ai/)
 - [Lola](https://github.com/LobsterTrap/lola) CLI installed
 - [Podman](https://podman.io/) (or Docker) — the MCP servers run as containers
 - A Red Hat account with access to [cloud.redhat.com](https://cloud.redhat.com)
@@ -27,14 +26,14 @@
 
 ```bash
 # Add the Red Hat Agentic marketplace (one-time setup)
-lola market add rh-agentic-collection https://raw.githubusercontent.com/RHEcosystemAppEng/agentic-catalog/main/marketplace/rh-agentic-collection.yml
+lola market add rh-agentic-plugins https://raw.githubusercontent.com/RHEcosystemAppEng/agentic-catalog/main/marketplace/rh-agentic-collection.yml
 
 # Install the ocp-admin pack (replace claude-code with your AI assistant)
-# Valid targets: claude-code, copilot-cli, copilot-vscode, cursor, gemini-cli, opencode
+# Valid targets: claude-code, copilot-cli, copilot-vscode, cursor, opencode
 lola install ocp-admin -a claude-code
 ```
 
-This installs the skills, the `AGENTS.md` routing file, and the `mcps.json` MCP server definitions into your project.
+This installs the skills, the instructions file, and the MCP server definitions into your project.
 
 Verify the installation:
 
@@ -62,8 +61,6 @@ export OFFLINE_TOKEN="<your-token>"
 export KUBECONFIG="/path/to/your/kubeconfig"
 ```
 
-To make these persistent, add them to your shell profile (`~/.bashrc`, `~/.zshrc`).
-
 ### Step 3: Use the skills
 
 The pack provides 7 skills. See the [ocp-admin README](../README.md) for the full list with descriptions and usage examples.
@@ -79,5 +76,5 @@ lola uninstall ocp-admin
 To also remove the marketplace registry:
 
 ```bash
-lola market rm rh-agentic-collection
+lola market rm rh-agentic-plugins
 ```
