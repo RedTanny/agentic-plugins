@@ -34,6 +34,5 @@ spec:
   dependsOn:
     - airesource:rh-sre/rh-sre
     - mcpserver:redhat/red-hat-lightspeed-mcp-server
-    - mcpserver:agentic-plugins/ansible-automation-platform
   dependencyOf:
     - airesource:rh-sre/remediation

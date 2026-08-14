@@ -34,4 +34,3 @@ spec:
   agents: []
   dependsOn:
     - airesource:rh-basic/rh-basic
-    - mcpserver:redhat/security-mcp-server

@@ -26,7 +26,7 @@ metadata:
       icon: github
 spec:
   type: plugin
-  lifecycle: production
+  lifecycle: development
   owner: group:redhat/ai5-marketplace
   system: default/agentic-plugins
   disciplines:

@@ -459,17 +459,9 @@ spec:
   dependsOn:
     - system:default/agentic-plugins
   dependencyOf:
-    - airesource:rh-sre/cve-impact
-    - airesource:rh-sre/cve-validation
-    - airesource:rh-sre/execution-summary
-    - airesource:rh-sre/fleet-inventory
     - airesource:rh-sre/job-template-creator
     - airesource:rh-sre/job-template-remediation-validator
     - airesource:rh-sre/mcp-aap-validator
-    - airesource:rh-sre/mcp-lightspeed-validator
     - airesource:rh-sre/playbook-executor
-    - airesource:rh-sre/playbook-generator
     - airesource:rh-sre/remediation
-    - airesource:rh-sre/remediation-verifier
     - airesource:rh-sre/rh-sre
-    - airesource:rh-sre/system-context
