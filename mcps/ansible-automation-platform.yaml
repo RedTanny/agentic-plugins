@@ -1,7 +1,7 @@
 apiVersion: mcp/v1beta1
 kind: MCPServer
 metadata:
-  namespace: agentic-plugins
+  namespace: ai5-marketplace
   name: ansible-automation-platform
   title: Ansible Automation Platform MCP Server
   description: >
@@ -459,9 +459,9 @@ spec:
   dependsOn:
     - system:default/agentic-plugins
   dependencyOf:
-    - airesource:rh-sre/job-template-creator
-    - airesource:rh-sre/job-template-remediation-validator
-    - airesource:rh-sre/mcp-aap-validator
-    - airesource:rh-sre/playbook-executor
-    - airesource:rh-sre/remediation
-    - airesource:rh-sre/rh-sre
+    - airesource:ai5-marketplace/job-template-creator
+    - airesource:ai5-marketplace/job-template-remediation-validator
+    - airesource:ai5-marketplace/mcp-aap-validator
+    - airesource:ai5-marketplace/playbook-executor
+    - airesource:ai5-marketplace/remediation
+    - airesource:ai5-marketplace/rh-sre

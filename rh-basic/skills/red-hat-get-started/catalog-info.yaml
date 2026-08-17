@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: AiResource
 metadata:
   name: red-hat-get-started
-  namespace: rh-basic
+  namespace: ai5-marketplace
   title: Red Hat Get Started
   description: >
     Bootstrap installer. Fetches and installs all Red Hat agent skills into
@@ -32,4 +32,4 @@ spec:
     - setup
   agents: []
   dependsOn:
-    - airesource:rh-basic/rh-basic
+    - airesource:ai5-marketplace/rh-basic

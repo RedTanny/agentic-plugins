@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: AiResource
 metadata:
   name: ocp-admin
-  namespace: ocp-admin
+  namespace: ai5-marketplace
   title: OpenShift Administration
   description: >
     Administration and management tools for OpenShift Container Platform
@@ -38,13 +38,13 @@ spec:
   agents: []
   dependsOn:
     - system:default/agentic-plugins
-    - mcpserver:agentic-plugins/assisted-installer
-    - mcpserver:agentic-plugins/openshift-mcp-server
+    - mcpserver:ai5-marketplace/assisted-installer
+    - mcpserver:ai5-marketplace/openshift-mcp-server
   dependencyOf:
-    - airesource:ocp-admin/cluster-creator
-    - airesource:ocp-admin/cluster-inventory
-    - airesource:ocp-admin/cluster-report
-    - airesource:ocp-admin/container-cve-validator
-    - airesource:ocp-admin/coreos-cve-validator
-    - airesource:ocp-admin/cve-recon
-    - airesource:ocp-admin/image-inspect
+    - airesource:ai5-marketplace/cluster-creator
+    - airesource:ai5-marketplace/cluster-inventory
+    - airesource:ai5-marketplace/cluster-report
+    - airesource:ai5-marketplace/container-cve-validator
+    - airesource:ai5-marketplace/coreos-cve-validator
+    - airesource:ai5-marketplace/cve-recon
+    - airesource:ai5-marketplace/image-inspect

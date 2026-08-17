@@ -1,7 +1,7 @@
 apiVersion: mcp/v1beta1
 kind: MCPServer
 metadata:
-  namespace: agentic-plugins
+  namespace: ai5-marketplace
   name: assisted-installer
   title: OpenShift Assisted Installer MCP Server
   description: >
@@ -102,6 +102,6 @@ spec:
   dependsOn:
     - system:default/agentic-plugins
   dependencyOf:
-    - airesource:ocp-admin/cluster-creator
-    - airesource:ocp-admin/cluster-inventory
-    - airesource:ocp-admin/ocp-admin
+    - airesource:ai5-marketplace/cluster-creator
+    - airesource:ai5-marketplace/cluster-inventory
+    - airesource:ai5-marketplace/ocp-admin

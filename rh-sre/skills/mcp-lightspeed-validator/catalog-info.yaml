@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: AiResource
 metadata:
   name: mcp-lightspeed-validator
-  namespace: rh-sre
+  namespace: ai5-marketplace
   title: MCP Lightspeed Validator
   description: >
     Validate Red Hat Lightspeed MCP server connectivity. Verifies lightspeed-mcp
@@ -32,7 +32,7 @@ spec:
     - validation
   agents: []
   dependsOn:
-    - airesource:rh-sre/rh-sre
+    - airesource:ai5-marketplace/rh-sre
     - mcpserver:redhat/red-hat-lightspeed-mcp-server
   dependencyOf:
-    - airesource:rh-sre/remediation
+    - airesource:ai5-marketplace/remediation

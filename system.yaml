@@ -20,10 +20,10 @@ metadata:
 spec:
   owner: group:redhat/ai5-marketplace
   dependencyOf:
-    - airesource:ocp-admin/ocp-admin
-    - airesource:rh-sre/rh-sre
-    - airesource:rh-virt/rh-virt
-    - airesource:rh-basic/rh-basic
-    - mcpserver:agentic-plugins/ansible-automation-platform
-    - mcpserver:agentic-plugins/assisted-installer
-    - mcpserver:agentic-plugins/openshift-mcp-server
+    - airesource:ai5-marketplace/ocp-admin
+    - airesource:ai5-marketplace/rh-sre
+    - airesource:ai5-marketplace/rh-virt
+    - airesource:ai5-marketplace/rh-basic
+    - mcpserver:ai5-marketplace/ansible-automation-platform
+    - mcpserver:ai5-marketplace/assisted-installer
+    - mcpserver:ai5-marketplace/openshift-mcp-server

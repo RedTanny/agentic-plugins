@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: AiResource
 metadata:
   name: remediation
-  namespace: rh-sre
+  namespace: ai5-marketplace
   title: Remediation
   description: >
     End-to-end CVE remediation orchestration skill. Handles multi-step remediation
@@ -34,14 +34,14 @@ spec:
     - remediation
   agents: []
   dependsOn:
-    - airesource:rh-sre/rh-sre
-    - airesource:rh-sre/mcp-lightspeed-validator
-    - airesource:rh-sre/mcp-aap-validator
-    - airesource:rh-sre/cve-impact
-    - airesource:rh-sre/cve-validation
-    - airesource:rh-sre/system-context
-    - airesource:rh-sre/playbook-generator
-    - airesource:rh-sre/playbook-executor
-    - airesource:rh-sre/remediation-verifier
+    - airesource:ai5-marketplace/rh-sre
+    - airesource:ai5-marketplace/mcp-lightspeed-validator
+    - airesource:ai5-marketplace/mcp-aap-validator
+    - airesource:ai5-marketplace/cve-impact
+    - airesource:ai5-marketplace/cve-validation
+    - airesource:ai5-marketplace/system-context
+    - airesource:ai5-marketplace/playbook-generator
+    - airesource:ai5-marketplace/playbook-executor
+    - airesource:ai5-marketplace/remediation-verifier
     - mcpserver:redhat/red-hat-lightspeed-mcp-server
-    - mcpserver:agentic-plugins/ansible-automation-platform
+    - mcpserver:ai5-marketplace/ansible-automation-platform

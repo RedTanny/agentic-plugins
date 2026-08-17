@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: AiResource
 metadata:
   name: execution-summary
-  namespace: rh-sre
+  namespace: ai5-marketplace
   title: Execution Summary
   description: >
     Generates a concise report of agents, skills, tools, and documentation accessed
@@ -31,4 +31,4 @@ spec:
     - reporting
   agents: []
   dependsOn:
-    - airesource:rh-sre/rh-sre
+    - airesource:ai5-marketplace/rh-sre

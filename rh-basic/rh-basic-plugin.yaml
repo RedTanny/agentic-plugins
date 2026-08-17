@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: AiResource
 metadata:
   name: rh-basic
-  namespace: rh-basic
+  namespace: ai5-marketplace
   title: Getting Started
   description: >
     Essential Red Hat skills for IT professionals. Covers CVE analysis,
@@ -40,9 +40,9 @@ spec:
     - system:default/agentic-plugins
     - mcpserver:redhat/security-mcp-server
   dependencyOf:
-    - airesource:rh-basic/red-hat-cve-explainer
-    - airesource:rh-basic/red-hat-diagnostics
-    - airesource:rh-basic/red-hat-get-started
-    - airesource:rh-basic/red-hat-product-lifecycle
-    - airesource:rh-basic/red-hat-security-mcp-setup
-    - airesource:rh-basic/red-hat-support-severity
+    - airesource:ai5-marketplace/red-hat-cve-explainer
+    - airesource:ai5-marketplace/red-hat-diagnostics
+    - airesource:ai5-marketplace/red-hat-get-started
+    - airesource:ai5-marketplace/red-hat-product-lifecycle
+    - airesource:ai5-marketplace/red-hat-security-mcp-setup
+    - airesource:ai5-marketplace/red-hat-support-severity

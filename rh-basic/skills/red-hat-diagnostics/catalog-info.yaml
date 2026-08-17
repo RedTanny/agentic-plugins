@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: AiResource
 metadata:
   name: red-hat-diagnostics
-  namespace: rh-basic
+  namespace: ai5-marketplace
   title: Red Hat Diagnostics
   description: >
     Explain how to gather diagnostic information for Red Hat products (RHEL,
@@ -33,4 +33,4 @@ spec:
     - diagnostics
   agents: []
   dependsOn:
-    - airesource:rh-basic/rh-basic
+    - airesource:ai5-marketplace/rh-basic

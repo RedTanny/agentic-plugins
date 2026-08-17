@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: AiResource
 metadata:
   name: cluster-report
-  namespace: ocp-admin
+  namespace: ai5-marketplace
   title: OpenShift Cluster Health Report
   description: >
     Generate a consolidated health report across multiple OpenShift clusters.
@@ -36,5 +36,5 @@ spec:
     - reporting
   agents: []
   dependsOn:
-    - airesource:ocp-admin/ocp-admin
-    - mcpserver:agentic-plugins/openshift-mcp-server
+    - airesource:ai5-marketplace/ocp-admin
+    - mcpserver:ai5-marketplace/openshift-mcp-server

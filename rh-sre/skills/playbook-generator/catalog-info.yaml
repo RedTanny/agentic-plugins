@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: AiResource
 metadata:
   name: playbook-generator
-  namespace: rh-sre
+  namespace: ai5-marketplace
   title: Playbook Generator
   description: >
     Generate production-ready Ansible remediation playbooks for CVE vulnerabilities with
@@ -33,7 +33,7 @@ spec:
     - remediation
   agents: []
   dependsOn:
-    - airesource:rh-sre/rh-sre
+    - airesource:ai5-marketplace/rh-sre
     - mcpserver:redhat/red-hat-lightspeed-mcp-server
   dependencyOf:
-    - airesource:rh-sre/remediation
+    - airesource:ai5-marketplace/remediation

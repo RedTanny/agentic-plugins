@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: AiResource
 metadata:
   name: rh-sre
-  namespace: rh-sre
+  namespace: ai5-marketplace
   title: Site Reliability Engineering
   description: >
     Agentic tools and automation for managing Red Hat platforms and
@@ -40,18 +40,18 @@ spec:
   dependsOn:
     - system:default/agentic-plugins
     - mcpserver:redhat/red-hat-lightspeed-mcp-server
-    - mcpserver:agentic-plugins/ansible-automation-platform
+    - mcpserver:ai5-marketplace/ansible-automation-platform
   dependencyOf:
-    - airesource:rh-sre/cve-impact
-    - airesource:rh-sre/cve-validation
-    - airesource:rh-sre/execution-summary
-    - airesource:rh-sre/fleet-inventory
-    - airesource:rh-sre/job-template-creator
-    - airesource:rh-sre/job-template-remediation-validator
-    - airesource:rh-sre/mcp-aap-validator
-    - airesource:rh-sre/mcp-lightspeed-validator
-    - airesource:rh-sre/playbook-executor
-    - airesource:rh-sre/playbook-generator
-    - airesource:rh-sre/remediation-verifier
-    - airesource:rh-sre/remediation
-    - airesource:rh-sre/system-context
+    - airesource:ai5-marketplace/cve-impact
+    - airesource:ai5-marketplace/cve-validation
+    - airesource:ai5-marketplace/execution-summary
+    - airesource:ai5-marketplace/fleet-inventory
+    - airesource:ai5-marketplace/job-template-creator
+    - airesource:ai5-marketplace/job-template-remediation-validator
+    - airesource:ai5-marketplace/mcp-aap-validator
+    - airesource:ai5-marketplace/mcp-lightspeed-validator
+    - airesource:ai5-marketplace/playbook-executor
+    - airesource:ai5-marketplace/playbook-generator
+    - airesource:ai5-marketplace/remediation-verifier
+    - airesource:ai5-marketplace/remediation
+    - airesource:ai5-marketplace/system-context

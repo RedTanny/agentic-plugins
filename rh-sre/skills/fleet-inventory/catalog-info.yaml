@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: AiResource
 metadata:
   name: fleet-inventory
-  namespace: rh-sre
+  namespace: ai5-marketplace
   title: Fleet Inventory
   description: >
     Query and display Red Hat Lightspeed managed system inventory. Focuses on discovery
@@ -32,5 +32,5 @@ spec:
     - monitoring
   agents: []
   dependsOn:
-    - airesource:rh-sre/rh-sre
+    - airesource:ai5-marketplace/rh-sre
     - mcpserver:redhat/red-hat-lightspeed-mcp-server

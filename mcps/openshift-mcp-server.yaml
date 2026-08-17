@@ -1,7 +1,7 @@
 apiVersion: mcp/v1beta1
 kind: MCPServer
 metadata:
-  namespace: agentic-plugins
+  namespace: ai5-marketplace
   name: openshift-mcp-server
   title: OpenShift MCP Server
   description: >
@@ -101,16 +101,16 @@ spec:
   dependsOn:
     - system:default/agentic-plugins
   dependencyOf:
-    - airesource:ocp-admin/cluster-report
-    - airesource:ocp-admin/ocp-admin
-    - airesource:rh-virt/rh-virt
-    - airesource:rh-virt/vm-clone
-    - airesource:rh-virt/vm-create
-    - airesource:rh-virt/vm-delete
-    - airesource:rh-virt/vm-inventory
-    - airesource:rh-virt/vm-lifecycle-manager
-    - airesource:rh-virt/vm-rebalance
-    - airesource:rh-virt/vm-snapshot-create
-    - airesource:rh-virt/vm-snapshot-delete
-    - airesource:rh-virt/vm-snapshot-list
-    - airesource:rh-virt/vm-snapshot-restore
+    - airesource:ai5-marketplace/cluster-report
+    - airesource:ai5-marketplace/ocp-admin
+    - airesource:ai5-marketplace/rh-virt
+    - airesource:ai5-marketplace/vm-clone
+    - airesource:ai5-marketplace/vm-create
+    - airesource:ai5-marketplace/vm-delete
+    - airesource:ai5-marketplace/vm-inventory
+    - airesource:ai5-marketplace/vm-lifecycle-manager
+    - airesource:ai5-marketplace/vm-rebalance
+    - airesource:ai5-marketplace/vm-snapshot-create
+    - airesource:ai5-marketplace/vm-snapshot-delete
+    - airesource:ai5-marketplace/vm-snapshot-list
+    - airesource:ai5-marketplace/vm-snapshot-restore

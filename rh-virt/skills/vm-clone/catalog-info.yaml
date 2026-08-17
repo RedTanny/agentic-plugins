@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: AiResource
 metadata:
   name: vm-clone
-  namespace: rh-virt
+  namespace: ai5-marketplace
   title: VM Clone
   description: >
     Clone existing virtual machines for testing, scaling, or creating templates.
@@ -32,5 +32,5 @@ spec:
     - vm-management
   agents: []
   dependsOn:
-    - airesource:rh-virt/rh-virt
-    - mcpserver:agentic-plugins/openshift-mcp-server
+    - airesource:ai5-marketplace/rh-virt
+    - mcpserver:ai5-marketplace/openshift-mcp-server

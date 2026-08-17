@@ -103,13 +103,13 @@ Concrete relationships in this repo:
 
 #### Namespaces
 
-Each pack uses its own namespace matching the pack name (e.g., `rh-sre`, `ocp-admin`). All MCP servers share the namespace `agentic-plugins`. The root System `agentic-plugins` uses the `default` namespace.
+All entities (skills, plugins, and MCP servers) share a single namespace: `ai5-marketplace`. The root System `agentic-plugins` uses the `default` namespace.
 
 #### Entity Reference Formats
 
-- Skills: `airesource:<pack-namespace>/<skill-name>`
-- Pack plugins: `airesource:<pack-namespace>/<pack-name>`
-- MCP servers: `mcpserver:agentic-plugins/<server-name>`
+- Skills: `airesource:ai5-marketplace/<skill-name>`
+- Pack plugins: `airesource:ai5-marketplace/<pack-name>`
+- MCP servers: `mcpserver:ai5-marketplace/<server-name>`
 
 #### Adding Compass Manifests for a New Skill
 
@@ -119,7 +119,7 @@ apiVersion: backstage.io/v1alpha1
 kind: AiResource
 metadata:
   name: <skill-name>
-  namespace: <pack-name>
+  namespace: ai5-marketplace
   title: <Skill Title>
   description: >
     <skill description>
@@ -147,9 +147,9 @@ spec:
     - opencode
     - cursor
   dependsOn:
-    - airesource:<pack-name>/<pack-name>
+    - airesource:ai5-marketplace/<pack-name>
     # Add mcpserver and airesource (skill) dependencies as needed
-    - mcpserver:agentic-plugins/<server-name>
+    - mcpserver:ai5-marketplace/<server-name>
 ```
 
 Then update **both sides** of every relationship:
