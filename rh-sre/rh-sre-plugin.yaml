@@ -37,8 +37,6 @@ spec:
     - monitoring
     - vulnerability-management
   agents: []
-  hasPart:
-    - airesource:ai5-marketplace/cve-impact
   dependsOn:
     - mcpserver:redhat/red-hat-lightspeed-mcp-server
     - mcpserver:ai5-marketplace/ansible-automation-platform
