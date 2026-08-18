@@ -19,6 +19,8 @@ agentic-plugins/
 ├── ocp-admin/           # OpenShift administration pack
 ├── rh-virt/             # Virtualization management pack
 ├── rh-basic/            # Getting started pack
+├── rh-ai-engineer/      # AI/ML engineering pack
+├── rh-automation/       # IT automation pack
 ├── mcps/                # MCP server Compass manifests (3 MCPServer entities)
 ├── eval/                # Skill evaluation reports (report.json + report.md per skill)
 ├── scripts/             # Validation and CI helper scripts
