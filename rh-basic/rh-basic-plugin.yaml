@@ -37,7 +37,6 @@ spec:
     - support
   agents: []
   dependsOn:
-    - system:default/agentic-plugins
     - mcpserver:redhat/security-mcp-server
   dependencyOf:
     - airesource:ai5-marketplace/red-hat-cve-explainer

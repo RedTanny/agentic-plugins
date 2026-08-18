@@ -36,7 +36,6 @@ spec:
     - vm-lifecycle
   agents: []
   dependsOn:
-    - system:default/agentic-plugins
     - mcpserver:ai5-marketplace/openshift-mcp-server
   dependencyOf:
     - airesource:ai5-marketplace/vm-clone

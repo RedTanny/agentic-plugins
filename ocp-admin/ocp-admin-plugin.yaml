@@ -37,7 +37,6 @@ spec:
     - administration
   agents: []
   dependsOn:
-    - system:default/agentic-plugins
     - mcpserver:ai5-marketplace/assisted-installer
     - mcpserver:ai5-marketplace/openshift-mcp-server
   dependencyOf:

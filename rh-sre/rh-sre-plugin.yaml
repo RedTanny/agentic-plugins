@@ -38,7 +38,6 @@ spec:
     - vulnerability-management
   agents: []
   dependsOn:
-    - system:default/agentic-plugins
     - mcpserver:redhat/red-hat-lightspeed-mcp-server
     - mcpserver:ai5-marketplace/ansible-automation-platform
   dependencyOf:
