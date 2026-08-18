@@ -94,7 +94,7 @@ All relationships use `dependsOn` / `dependencyOf`:
 Concrete relationships in this repo:
 
 - **Skill → Plugin**: `dependsOn` / `dependencyOf` (a skill belongs to its plugin)
-- **Plugin → System**: `dependsOn` / `dependencyOf` (a plugin belongs to the system)
+- **Plugin → System**: `spec.system` (generates `partOf` relation automatically; no explicit `dependsOn` to the system needed)
 - **MCPServer → System**: `dependsOn` / `dependencyOf` (an MCP server belongs to the system)
 - **Skill → MCPServer**: `dependsOn` / `dependencyOf` (a skill uses an MCP server)
 - **Plugin → MCPServer**: `dependsOn` / `dependencyOf` (a plugin uses an MCP server)
