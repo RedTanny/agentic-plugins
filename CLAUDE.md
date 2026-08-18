@@ -339,7 +339,7 @@ last_updated: YYYY-MM-DD
 ### rh-sre (Full-Featured Reference)
 
 The most complete pack, demonstrating:
-- Full skill orchestration (10 skills)
+- Full skill orchestration (13 skills)
 - Orchestration skills (remediation skill orchestrates 6 skills)
 - AI-optimized documentation system
 - MCP server integration
