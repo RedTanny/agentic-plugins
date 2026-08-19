@@ -1,0 +1,40 @@
+apiVersion: backstage.io/v1alpha1
+kind: AiResource
+metadata:
+  name: cluster-report
+  namespace: ai5-marketplace
+  title: OpenShift Cluster Health Report
+  description: >
+    Generate a consolidated health report across multiple OpenShift clusters.
+    Verifies each kubeconfig context is a genuine OpenShift cluster before reporting.
+    Non-OpenShift contexts are skipped by default.
+  labels:
+    distribution: external
+  annotations:
+    backstage.io/source-location: >-
+      url:https://github.com/RHEcosystemAppEng/agentic-plugins/blob/main/ocp-admin/skills/cluster-report/SKILL.md
+
+  tags:
+    - ai-skill
+    - openshift
+    - cluster-management
+    - health-check
+    - reporting
+  links:
+    - url: https://github.com/RHEcosystemAppEng/agentic-plugins
+      title: Source Repository
+      icon: github
+spec:
+  type: skill
+  lifecycle: beta
+  owner: group:redhat/ai5-marketplace
+  disciplines:
+    - devops
+    - sre
+  categories:
+    - monitoring
+    - reporting
+  agents: []
+  dependsOn:
+    - airesource:ai5-marketplace/ocp-admin
+    - mcpserver:ai5-marketplace/openshift-mcp-server

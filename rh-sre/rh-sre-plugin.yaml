@@ -1,0 +1,56 @@
+apiVersion: backstage.io/v1alpha1
+kind: AiResource
+metadata:
+  name: rh-sre
+  namespace: ai5-marketplace
+  title: Site Reliability Engineering
+  description: >
+    Agentic tools and automation for managing Red Hat platforms and
+    infrastructure. Covers vulnerability management, fleet inventory,
+    system monitoring, and operational excellence for SRE workflows.
+  tags:
+    - ai-skill
+    - sre
+    - monitoring
+    - vulnerability-management
+  annotations:
+    agentic-plugins.redhat.com/version: "1.0"
+    agentic-plugins.redhat.com/repo: "agentic-plugins"
+    agentic.redhat.com/lola-module: "true"
+    agentic.redhat.com/lola-module-name: rh-sre
+    agentic.redhat.com/repository: https://github.com/RHEcosystemAppEng/agentic-plugins
+    agentic.redhat.com/path: rh-sre
+    github.com/project-slug: RHEcosystemAppEng/agentic-plugins
+  links:
+    - url: https://github.com/RHEcosystemAppEng/agentic-plugins
+      title: Source Repository
+      icon: github
+spec:
+  type: plugin
+  lifecycle: development
+  owner: group:redhat/ai5-marketplace
+  system: default/agentic-plugins
+  disciplines:
+    - sre
+    - security
+  categories:
+    - monitoring
+    - vulnerability-management
+  agents: []
+  dependsOn:
+    - mcpserver:redhat/red-hat-lightspeed-mcp-server
+    - mcpserver:ai5-marketplace/ansible-automation-platform
+  dependencyOf:
+    - airesource:ai5-marketplace/cve-impact
+    - airesource:ai5-marketplace/cve-validation
+    - airesource:ai5-marketplace/execution-summary
+    - airesource:ai5-marketplace/fleet-inventory
+    - airesource:ai5-marketplace/job-template-creator
+    - airesource:ai5-marketplace/job-template-remediation-validator
+    - airesource:ai5-marketplace/mcp-aap-validator
+    - airesource:ai5-marketplace/mcp-lightspeed-validator
+    - airesource:ai5-marketplace/playbook-executor
+    - airesource:ai5-marketplace/playbook-generator
+    - airesource:ai5-marketplace/remediation-verifier
+    - airesource:ai5-marketplace/remediation
+    - airesource:ai5-marketplace/system-context

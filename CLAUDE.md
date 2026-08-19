@@ -12,14 +12,16 @@ Contributors work here to create, improve, and validate skills. An internal proc
 
 ```
 agentic-plugins/
+├── catalog-info.yaml    # Root Location — entry point for Compass ingestion
+├── system.yaml          # System entity (agentic-plugins) — models the whole repo
 ├── rh-sre/              # Site Reliability Engineering pack (reference implementation)
 ├── rh-developer/        # Developer tools pack
 ├── ocp-admin/           # OpenShift administration pack
 ├── rh-virt/             # Virtualization management pack
 ├── rh-basic/            # Getting started pack
-├── rh-ai-engineer/      # AI Engineering pack
-├── rh-automation/       # Automation pack
-├── rh-support-engineer/ # Support engineering pack
+├── rh-ai-engineer/      # AI/ML engineering pack
+├── rh-automation/       # IT automation pack
+├── mcps/                # MCP server Compass manifests (3 MCPServer entities)
 ├── eval/                # Skill evaluation reports (report.json + report.md per skill)
 ├── scripts/             # Validation and CI helper scripts
 ├── catalog/             # JSON Schema for .catalog/collection.yaml validation
@@ -37,6 +39,8 @@ Each pack is persona-specific and follows this structure:
 
 ```
 <pack-name>/
+├── catalog-info.yaml    # Location entity — indexes this pack's Compass manifests
+├── <pack-name>-plugin.yaml  # AiResource (type: plugin) — defines the pack itself
 ├── AGENTS.md            # AI Context Module instruction routing (persona, skills, rules)
 ├── README.md            # Pack description, persona, target marketplaces
 ├── mcps.json            # MCP server configurations (uses env vars for credentials)
@@ -45,13 +49,116 @@ Each pack is persona-specific and follows this structure:
 │   └── collection.json  # Deterministic JSON mirror of collection.yaml
 ├── skills/              # Specialized task executors (including orchestration skills)
 │   └── <skill>/
-│       └── SKILL.md     # Skill definition with YAML frontmatter
+│       ├── SKILL.md     # Skill definition with YAML frontmatter
+│       └── catalog-info.yaml  # AiResource (type: skill) — Compass manifest
 └── docs/                # AI-optimized knowledge base (optional, rh-sre reference)
 ```
 
 ### Relationship with the Catalog
 
 Each pack's `.catalog/` directory contains metadata that describes the pack for the marketplace. This metadata stays here, alongside the skills it describes. The catalog build process reads it from this repo to assemble the unified marketplace. The golden sources are always `SKILL.md`, `AGENTS.md`, `README.md`, and `mcps.json` — `.catalog/` is derived from them, never the other way around.
+
+### Compass / Backstage Manifests
+
+The repository is registered in [Red Hat Compass](https://compass.redhat.com) (internal Backstage instance) through a hierarchy of Backstage entity manifests. All manifests use `apiVersion: backstage.io/v1alpha1` except MCPServer entities which use `apiVersion: mcp/v1beta1`.
+
+#### Entity Kinds
+
+| Kind | Purpose | spec.type | Count |
+|------|---------|-----------|-------|
+| **Location** | Index that references other manifest files | — | 6 (1 root + 4 packs + 1 mcps) |
+| **System** | Top-level grouping for the repository | — | 1 (`agentic-plugins`) |
+| **AiResource** | Skills and pack definitions | `plugin` (packs) / `skill` (skills) | 4 packs + 36 skills |
+| **MCPServer** | MCP server configurations | `local` / `remote` | 3 |
+
+#### Location Hierarchy
+
+Compass ingests a single root Location. Everything else is discovered through delegation:
+
+```
+catalog-info.yaml (root Location)
+├── system.yaml                         → System: agentic-plugins
+├── ocp-admin/catalog-info.yaml         → Location → ocp-admin-plugin.yaml + 7 skills
+├── rh-sre/catalog-info.yaml            → Location → rh-sre-plugin.yaml + 13 skills
+├── rh-virt/catalog-info.yaml           → Location → rh-virt-plugin.yaml + 10 skills
+├── rh-basic/catalog-info.yaml          → Location → rh-basic-plugin.yaml + 6 skills
+└── mcps/catalog-info.yaml              → Location → 3 MCPServers
+```
+
+#### Entity Relationships
+
+All relationships use `dependsOn` / `dependencyOf`:
+
+> **Why not `partOf`/`hasPart`?** Compass only processes `partOf`/`hasPart` for standard Backstage kinds (Component, API, Resource). Custom kinds like `AiResource` and `MCPServer` can store these fields in `spec`, but they are not processed into the relation graph. Only `dependsOn`/`dependencyOf` and `ownedBy`/`ownerOf` generate actual relations for custom kinds.
+
+Concrete relationships in this repo:
+
+- **Skill → Plugin**: `dependsOn` / `dependencyOf` (a skill belongs to its plugin)
+- **Plugin → System**: `spec.system` (generates `partOf` relation automatically; no explicit `dependsOn` to the system needed)
+- **MCPServer → System**: `dependsOn` / `dependencyOf` (an MCP server belongs to the system)
+- **Skill → MCPServer**: `dependsOn` / `dependencyOf` (a skill uses an MCP server)
+- **Plugin → MCPServer**: `dependsOn` / `dependencyOf` (a plugin uses an MCP server)
+- **Skill → Skill**: `dependsOn` / `dependencyOf` (orchestration skills invoke other skills)
+- **All entities → Group**: `spec.owner: group:redhat/ai5-marketplace`
+
+> **Bidirectional declaration policy:** Compass does not auto-generate inverse relations for custom entity kinds such as `AiResource` and `MCPServer` (tracked as COMPASS-1288). Until this is resolved upstream, we explicitly declare **both directions** of every relationship in our manifests. For example, if a skill declares `dependsOn: [airesource:rh-sre/rh-sre]`, the plugin must also declare `dependencyOf: [airesource:rh-sre/<skill>]`. When adding or modifying a relationship, always update both the source and target manifests.
+
+#### Namespaces
+
+All entities (skills, plugins, and MCP servers) share a single namespace: `ai5-marketplace`. The root System `agentic-plugins` uses the `default` namespace.
+
+#### Entity Reference Formats
+
+- Skills: `airesource:ai5-marketplace/<skill-name>`
+- Pack plugins: `airesource:ai5-marketplace/<pack-name>`
+- MCP servers: `mcpserver:ai5-marketplace/<server-name>`
+
+#### Adding Compass Manifests for a New Skill
+
+When adding a skill, create `skills/<skill-name>/catalog-info.yaml`:
+```yaml
+apiVersion: backstage.io/v1alpha1
+kind: AiResource
+metadata:
+  name: <skill-name>
+  namespace: ai5-marketplace
+  title: <Skill Title>
+  description: >
+    <skill description>
+  labels:
+    distribution: external
+  annotations:
+    backstage.io/source-location: >-
+      url:https://github.com/RHEcosystemAppEng/agentic-plugins/blob/main/<pack>/skills/<skill>/SKILL.md
+  tags:
+    - ai-skill
+  links:
+    - url: https://github.com/RHEcosystemAppEng/agentic-plugins
+      title: Source Repository
+      icon: github
+spec:
+  type: skill
+  lifecycle: beta
+  owner: group:redhat/ai5-marketplace
+  disciplines:
+    - <discipline>
+  categories:
+    - <category>
+  agents:
+    - claude-code
+    - opencode
+    - cursor
+  dependsOn:
+    - airesource:ai5-marketplace/<pack-name>
+    # Add mcpserver and airesource (skill) dependencies as needed
+    - mcpserver:ai5-marketplace/<server-name>
+```
+
+Then update **both sides** of every relationship:
+1. Add the file as a target in the pack's `catalog-info.yaml` Location
+2. Add the skill to the plugin's `dependencyOf` list in `<pack>-plugin.yaml`
+3. Add the skill to each referenced MCP server's `dependencyOf` list in `mcps/<server>.yaml`
+4. If the skill depends on other skills, add `dependencyOf` entries in those skills' manifests
 
 ## Contributing
 
@@ -165,6 +272,7 @@ last_updated: YYYY-MM-DD
 
 ### Files
 - Skills: `skills/<skill-name>/SKILL.md` (uppercase SKILL.md)
+- Compass manifests: `catalog-info.yaml` (Locations), `<pack-name>-plugin.yaml` (pack AiResource), `system.yaml` (System entities)
 - Docs: Lowercase with dashes, categorized by directory
 
 ## Development Workflow
@@ -176,7 +284,11 @@ last_updated: YYYY-MM-DD
 3. Add `AGENTS.md` with persona, skill-first rule, intent routing table, MCP servers, and global rules (see [rh-ai-engineer/AGENTS.md](rh-ai-engineer/AGENTS.md) for reference)
 4. Create `skills/` directory
 5. Add `mcps.json` when the pack integrates MCP servers (use `${VAR}` for secrets)
-6. Update main `README.md` table with link
+6. Create Compass manifests:
+   - `<pack-name>-plugin.yaml` — AiResource with `type: plugin`, `system: agentic-plugins`
+   - `catalog-info.yaml` — Location targeting the plugin file and all skill catalog-info.yaml files
+7. Add the pack's `catalog-info.yaml` as a target in the root `catalog-info.yaml`
+8. Update main `README.md` table with link
 
 ### Adding a Skill
 
@@ -192,8 +304,10 @@ last_updated: YYYY-MM-DD
    - Dependencies declaration
 4. Include concrete examples and complete error handling
 5. Update the pack's `AGENTS.md` intent routing table to include the new skill
-6. Test with `Skill` tool invocation
-7. Validate with `uv run python scripts/validate_skills_tier1.py <pack>/skills/<skill-name>/SKILL.md`
+6. Create `skills/<skill-name>/catalog-info.yaml` Compass manifest (see "Adding Compass Manifests for a New Skill")
+7. Add the skill's `catalog-info.yaml` as a target in the pack's `catalog-info.yaml` Location
+8. Test with `Skill` tool invocation
+9. Validate with `uv run python scripts/validate_skills_tier1.py <pack>/skills/<skill-name>/SKILL.md`
 
 **Collection-Specific Standards:**
 - **rh-virt**: Follow `rh-virt/SKILL_TEMPLATE.md` for enhanced quality standards including mandatory Common Issues and Example Usage sections
@@ -225,7 +339,7 @@ last_updated: YYYY-MM-DD
 ### rh-sre (Full-Featured Reference)
 
 The most complete pack, demonstrating:
-- Full skill orchestration (10 skills)
+- Full skill orchestration (13 skills)
 - Orchestration skills (remediation skill orchestrates 6 skills)
 - AI-optimized documentation system
 - MCP server integration

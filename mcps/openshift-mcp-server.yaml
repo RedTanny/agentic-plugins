@@ -1,0 +1,116 @@
+apiVersion: mcp/v1beta1
+kind: MCPServer
+metadata:
+  namespace: ai5-marketplace
+  name: openshift-mcp-server
+  title: OpenShift MCP Server
+  description: >
+    Red Hat OpenShift MCP server for interacting with OpenShift Container Platform
+    clusters and its operators. Provides access to cluster resources, node metrics,
+    configuration contexts, virtualization, Helm, observability, and service mesh
+    toolsets depending on configuration.
+  labels:
+    distribution: external
+  annotations:
+    backstage.io/source-location: >-
+      url:https://github.com/RHEcosystemAppEng/agentic-plugins/blob/main/ocp-admin/mcps.json
+  tags:
+    - openshift
+    - kubernetes
+    - cluster-operations
+    - mcp-server
+  links:
+    - url: https://github.com/openshift/openshift-mcp-server
+      title: Upstream Repository
+      icon: github
+spec:
+  type: local
+  lifecycle: beta
+  owner: group:redhat/ai5-marketplace
+  system: default/agentic-plugins
+  primitives:
+    - type: tool
+      name: configuration_contexts_list
+      description: List available kubeconfig contexts for cluster access.
+    - type: tool
+      name: configuration_view
+      description: Get the current Kubernetes configuration as kubeconfig YAML.
+    - type: tool
+      name: events_list
+      description: List Kubernetes events from all namespaces in the cluster.
+    - type: tool
+      name: namespaces_list
+      description: List all namespaces in the cluster.
+    - type: tool
+      name: nodes_log
+      description: Get logs from a Kubernetes node (kubelet, kube-proxy, or system logs).
+    - type: tool
+      name: nodes_stats_summary
+      description: Get detailed resource usage statistics from a node via kubelet Summary API.
+    - type: tool
+      name: nodes_top
+      description: List node resource consumption (CPU and memory) from Metrics Server.
+    - type: tool
+      name: pods_delete
+      description: Delete a pod in a specified namespace.
+    - type: tool
+      name: pods_exec
+      description: Execute a command in a pod container.
+    - type: tool
+      name: pods_get
+      description: Get details of a specific pod.
+    - type: tool
+      name: pods_list
+      description: List all pods in the cluster from all namespaces.
+    - type: tool
+      name: pods_list_in_namespace
+      description: List all pods in a specified namespace.
+    - type: tool
+      name: pods_log
+      description: Get logs from a pod container.
+    - type: tool
+      name: pods_run
+      description: Run a new pod with a specified container image.
+    - type: tool
+      name: pods_top
+      description: List pod resource consumption (CPU and memory) from Metrics Server.
+    - type: tool
+      name: resources_create_or_update
+      description: Create or update a Kubernetes resource from YAML or JSON.
+    - type: tool
+      name: resources_delete
+      description: Delete a Kubernetes resource by kind and name.
+    - type: tool
+      name: resources_get
+      description: Get details of a specific Kubernetes resource.
+    - type: tool
+      name: resources_list
+      description: List Kubernetes resources by API version and kind.
+    - type: tool
+      name: resources_scale
+      description: Get or update the scale of a Kubernetes resource.
+  packages:
+    - type: container
+      registry_name: quay.io
+      name: ecosystem-appeng/openshift-mcp-server
+      version: sha256:3531cb78f51f8c7ebcdb21adc21358ab8924116994848a3ce1ff542b3fc23742
+      environment_variables:
+        - description: Path to kubeconfig file for cluster authentication
+          name: KUBECONFIG
+  remotes: []
+  dependsOn:
+    - system:default/agentic-plugins
+  dependencyOf:
+    - airesource:ai5-marketplace/cluster-report
+    - airesource:ai5-marketplace/ocp-admin
+    - airesource:ai5-marketplace/rh-virt
+    - airesource:ai5-marketplace/vm-clone
+    - airesource:ai5-marketplace/vm-create
+    - airesource:ai5-marketplace/vm-delete
+    - airesource:ai5-marketplace/vm-inventory
+    - airesource:ai5-marketplace/vm-lifecycle-manager
+    - airesource:ai5-marketplace/vm-rebalance
+    - airesource:ai5-marketplace/vm-snapshot-create
+    - airesource:ai5-marketplace/vm-snapshot-delete
+    - airesource:ai5-marketplace/vm-snapshot-list
+    - airesource:ai5-marketplace/vm-snapshot-restore

@@ -1,0 +1,36 @@
+apiVersion: backstage.io/v1alpha1
+kind: AiResource
+metadata:
+  name: vm-rebalance
+  namespace: ai5-marketplace
+  title: VM Rebalance
+  description: >
+    Orchestrate VM migrations across cluster nodes for load balancing, maintenance,
+    and resource optimization. Supports manual (user-driven) and automatic (AI-driven) modes.
+  labels:
+    distribution: external
+  annotations:
+    backstage.io/source-location: >-
+      url:https://github.com/RHEcosystemAppEng/agentic-plugins/blob/main/rh-virt/skills/vm-rebalance/SKILL.md
+  tags:
+    - ai-skill
+    - virtualization
+    - load-balancing
+    - migration
+    - optimization
+  links:
+    - url: https://github.com/RHEcosystemAppEng/agentic-plugins
+      title: Source Repository
+      icon: github
+spec:
+  type: skill
+  lifecycle: beta
+  owner: group:redhat/ai5-marketplace
+  disciplines:
+    - optimization
+  categories:
+    - cluster-optimization
+  agents: []
+  dependsOn:
+    - airesource:ai5-marketplace/rh-virt
+    - mcpserver:ai5-marketplace/openshift-mcp-server

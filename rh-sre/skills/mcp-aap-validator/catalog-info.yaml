@@ -1,0 +1,39 @@
+apiVersion: backstage.io/v1alpha1
+kind: AiResource
+metadata:
+  name: mcp-aap-validator
+  namespace: ai5-marketplace
+  title: MCP AAP Validator
+  description: >
+    Validate AAP (Ansible Automation Platform) MCP server connectivity. Runs lightweight
+    tool calls to verify AAP MCP availability before job management or inventory operations.
+  labels:
+    distribution: external
+  annotations:
+    backstage.io/source-location: >-
+      url:https://github.com/RHEcosystemAppEng/agentic-plugins/blob/main/rh-sre/skills/mcp-aap-validator/SKILL.md
+  tags:
+    - ai-skill
+    - sre
+    - mcp
+    - validation
+    - aap
+  links:
+    - url: https://github.com/RHEcosystemAppEng/agentic-plugins
+      title: Source Repository
+      icon: github
+spec:
+  type: skill
+  lifecycle: beta
+  owner: group:redhat/ai5-marketplace
+  disciplines:
+    - devops
+  categories:
+    - validation
+  agents: []
+  dependsOn:
+    - airesource:ai5-marketplace/rh-sre
+    - mcpserver:ai5-marketplace/ansible-automation-platform
+  dependencyOf:
+    - airesource:ai5-marketplace/playbook-executor
+    - airesource:ai5-marketplace/remediation

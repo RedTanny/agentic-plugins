@@ -1,0 +1,467 @@
+apiVersion: mcp/v1beta1
+kind: MCPServer
+metadata:
+  namespace: ai5-marketplace
+  name: ansible-automation-platform
+  title: Ansible Automation Platform MCP Server
+  description: >
+    Ansible Automation Platform MCP server providing job management,
+    inventory management, configuration, security compliance, system
+    monitoring, and user management operations via remote HTTP endpoints.
+  labels:
+    distribution: external
+  annotations:
+    backstage.io/source-location: >-
+      url:https://github.com/RHEcosystemAppEng/agentic-plugins/blob/main/rh-sre/mcps.json
+  tags:
+    - ansible
+    - aap
+    - automation
+    - mcp-server
+  links:
+    - url: https://github.com/ansible/aap-mcp-server
+      title: Upstream Repository
+      icon: github
+spec:
+  type: remote
+  lifecycle: beta
+  owner: group:redhat/ai5-marketplace
+  system: default/agentic-plugins
+  primitives:
+    - type: tool
+      name: controller.job_templates_launch_retrieve
+      description: Retrieve single launch for a job template.
+    - type: tool
+      name: controller.job_templates_launch_create
+      description: Launch the job template.
+    - type: tool
+      name: controller.workflow_job_templates_launch_create
+      description: Launch the workflow job template.
+    - type: tool
+      name: controller.jobs_retrieve
+      description: Retrieve a job.
+    - type: tool
+      name: controller.workflow_jobs_retrieve
+      description: Retrieve a workflow job.
+    - type: tool
+      name: controller.jobs_stdout_retrieve
+      description: Get the standard output for the selected job.
+    - type: tool
+      name: controller.jobs_job_events_list
+      description: List job events of a job.
+    - type: tool
+      name: controller.jobs_cancel_create
+      description: Cancel a running or pending job.
+    - type: tool
+      name: controller.workflow_jobs_cancel_create
+      description: Cancel a running or pending workflow job.
+    - type: tool
+      name: controller.jobs_relaunch_retrieve
+      description: Retrieve single relaunch for a job.
+    - type: tool
+      name: controller.jobs_relaunch_create
+      description: Relaunch a job.
+    - type: tool
+      name: controller.workflow_jobs_relaunch_create
+      description: Relaunch a workflow job.
+    - type: tool
+      name: controller.jobs_list
+      description: A list of jobs.
+    - type: tool
+      name: eda.activation_instances_list
+      description: List activation instances with status, queue, and timing info.
+    - type: tool
+      name: eda.activation_instances_logs_list
+      description: List logs for an activation instance by ID.
+    - type: tool
+      name: controller.analytics_retrieve
+      description: A list of additional API endpoints related to analytics.
+    - type: tool
+      name: controller.metrics_retrieve
+      description: Get Prometheus metrics data.
+    - type: tool
+      name: controller.projects_list
+      description: A list of projects.
+    - type: tool
+      name: controller.job_templates_list
+      description: A list of job templates.
+    - type: tool
+      name: controller.workflow_job_templates_list
+      description: A list of workflow job templates.
+    - type: tool
+      name: controller.job_templates_retrieve
+      description: Retrieve a job template.
+    - type: tool
+      name: controller.workflow_job_templates_retrieve
+      description: Retrieve a workflow job template.
+    - type: tool
+      name: controller.jobs_job_host_summaries_list
+      description: List job host summaries of a job.
+    - type: tool
+      name: controller.workflow_jobs_list
+      description: A list of workflow jobs.
+    - type: tool
+      name: controller.workflow_jobs_workflow_nodes_list
+      description: List workflow nodes of a workflow job.
+    - type: tool
+      name: controller.job_templates_create
+      description: Create a job template.
+    - type: tool
+      name: controller.schedules_create
+      description: Create a schedule.
+    - type: tool
+      name: controller.projects_create
+      description: Create a project.
+    - type: tool
+      name: controller.job_templates_credentials_create
+      description: Create a credential of a job template.
+    - type: tool
+      name: controller.job_templates_credentials_list
+      description: List credentials of a job template.
+    - type: tool
+      name: controller.job_templates_survey_spec_create
+      description: Update job template survey specification.
+    - type: tool
+      name: controller.job_templates_notification_templates_started_create
+      description: Create notification templates triggered on job start.
+    - type: tool
+      name: controller.job_templates_notification_templates_success_create
+      description: Create notification templates triggered on job success.
+    - type: tool
+      name: controller.job_templates_notification_templates_error_create
+      description: Create notification templates triggered on job error.
+    - type: tool
+      name: controller.unified_job_templates_list
+      description: List unified job templates.
+    - type: tool
+      name: controller.projects_playbooks_retrieve
+      description: Retrieve single playbook for a project.
+    - type: tool
+      name: controller.workflow_job_template_nodes_credentials_list
+      description: List credentials of a workflow job template node.
+    - type: tool
+      name: controller.ad_hoc_commands_create
+      description: Create an ad hoc command.
+    - type: tool
+      name: controller.ad_hoc_commands_list
+      description: List ad hoc commands.
+    - type: tool
+      name: controller.ad_hoc_commands_retrieve
+      description: Retrieve an ad hoc command.
+    - type: tool
+      name: controller.ad_hoc_commands_stdout_retrieve
+      description: Retrieve stdout output of an ad hoc command.
+    - type: tool
+      name: controller.ad_hoc_commands_events_list
+      description: List events of an ad hoc command.
+    - type: tool
+      name: controller.ad_hoc_commands_cancel_create
+      description: Cancel an ad hoc command.
+    - type: tool
+      name: controller.ad_hoc_commands_relaunch_create
+      description: Relaunch an ad hoc command.
+    - type: tool
+      name: controller.ad_hoc_commands_relaunch_retrieve
+      description: Return passwords needed to start an ad hoc command.
+    - type: tool
+      name: controller.hosts_ad_hoc_commands_create
+      description: Create an ad hoc command of a host.
+    - type: tool
+      name: controller.inventories_ad_hoc_commands_create
+      description: Create an ad hoc command for an inventory.
+    - type: tool
+      name: controller.groups_ad_hoc_commands_create
+      description: Create an ad hoc command for a group.
+    - type: tool
+      name: controller.inventories_list
+      description: A list of inventories.
+    - type: tool
+      name: controller.inventory_sources_update_create
+      description: Sync the inventory source.
+    - type: tool
+      name: controller.hosts_list
+      description: A list of hosts.
+    - type: tool
+      name: controller.hosts_retrieve
+      description: Retrieve a host.
+    - type: tool
+      name: controller.hosts_variable_data_retrieve
+      description: The extra variable configuration for this host.
+    - type: tool
+      name: controller.groups_list
+      description: A list of groups.
+    - type: tool
+      name: controller.groups_create
+      description: Create a new group.
+    - type: tool
+      name: controller.inventories_create
+      description: Create an inventory.
+    - type: tool
+      name: controller.hosts_create
+      description: Create a host.
+    - type: tool
+      name: controller.inventory_sources_create
+      description: Create an inventory source.
+    - type: tool
+      name: controller.hosts_ansible_facts_retrieve
+      description: Get Ansible facts for a host.
+    - type: tool
+      name: controller.inventory_sources_list
+      description: List inventory sources.
+    - type: tool
+      name: controller.inventories_inventory_sources_list
+      description: List inventory sources for an inventory.
+    - type: tool
+      name: controller.instance_groups_list
+      description: A list of instance groups.
+    - type: tool
+      name: controller.instance_groups_create
+      description: Create an instance group for job execution.
+    - type: tool
+      name: controller.instance_groups_retrieve
+      description: Retrieve an instance group.
+    - type: tool
+      name: controller.mesh_visualizer_retrieve
+      description: Get mesh network topology visualization data.
+    - type: tool
+      name: controller.instances_create
+      description: Register an execution or hop node instance.
+    - type: tool
+      name: controller.instances_retrieve
+      description: Retrieve an instance.
+    - type: tool
+      name: gateway.activitystream_list
+      description: List audit trail entries for tracking system changes and user actions.
+    - type: tool
+      name: gateway.activitystream_retrieve
+      description: Retrieve an audit trail entry.
+    - type: tool
+      name: gateway.authenticators_list
+      description: List authentication types (LDAP, SAML, OAuth).
+    - type: tool
+      name: controller.activity_stream_list
+      description: A list of activity stream entries.
+    - type: tool
+      name: controller.activity_stream_retrieve
+      description: Retrieve an activity stream entry.
+    - type: tool
+      name: gateway.status_retrieve
+      description: Retrieve gateway status.
+    - type: tool
+      name: gateway.feature_flags_state_retrieve
+      description: Retrieve feature flags state.
+    - type: tool
+      name: gateway.teams_list
+      description: List teams for bulk permission assignment and RBAC.
+    - type: tool
+      name: gateway.teams_retrieve
+      description: Retrieve a team.
+    - type: tool
+      name: gateway.teams_create
+      description: Create a team.
+    - type: tool
+      name: gateway.teams_update
+      description: Update a team.
+    - type: tool
+      name: gateway.teams_destroy
+      description: Delete a team.
+    - type: tool
+      name: gateway.teams_users_list
+      description: List all users for a team.
+    - type: tool
+      name: gateway.me_list
+      description: Retrieve details about the current authenticated user.
+    - type: tool
+      name: gateway.role_definitions_list
+      description: List RBAC roles defining permissions.
+    - type: tool
+      name: gateway.role_team_assignments_list
+      description: List RBAC role grants for teams.
+    - type: tool
+      name: gateway.role_user_assignments_list
+      description: List RBAC role grants for users.
+    - type: tool
+      name: gateway.role_user_assignments_create
+      description: Create an RBAC role grant for a user.
+    - type: tool
+      name: gateway.role_user_assignments_destroy
+      description: Delete an RBAC role grant for a user.
+    - type: tool
+      name: gateway.organizations_list
+      description: List organizations for access control.
+    - type: tool
+      name: gateway.organizations_retrieve
+      description: Retrieve an organization.
+    - type: tool
+      name: gateway.organizations_create
+      description: Create an organization.
+    - type: tool
+      name: gateway.organizations_update
+      description: Update an organization.
+    - type: tool
+      name: gateway.organizations_destroy
+      description: Delete an organization.
+    - type: tool
+      name: gateway.users_list
+      description: List platform users.
+    - type: tool
+      name: gateway.users_retrieve
+      description: Retrieve a platform user.
+    - type: tool
+      name: gateway.users_create
+      description: Create a platform user.
+    - type: tool
+      name: gateway.users_update
+      description: Update a platform user.
+    - type: tool
+      name: gateway.users_destroy
+      description: Delete a platform user.
+    - type: tool
+      name: gateway.users_teams_list
+      description: List all teams for a user.
+    - type: tool
+      name: gateway.authenticators_retrieve
+      description: Retrieve an authenticator.
+    - type: tool
+      name: gateway.authenticators_create
+      description: Create an authenticator.
+    - type: tool
+      name: gateway.authenticators_update
+      description: Update an authenticator.
+    - type: tool
+      name: gateway.authenticators_destroy
+      description: Delete an authenticator.
+    - type: tool
+      name: gateway.authenticator_maps_list
+      description: List conditional rules for granting access based on user attributes.
+    - type: tool
+      name: gateway.authenticator_maps_create
+      description: Create a conditional rule for granting access.
+    - type: tool
+      name: controller.users_activity_stream_list
+      description: List activity stream for a user.
+    - type: tool
+      name: controller.credentials_list
+      description: A list of credentials.
+    - type: tool
+      name: controller.credentials_create
+      description: Create a new credential.
+    - type: tool
+      name: controller.credentials_retrieve
+      description: Retrieve a credential.
+    - type: tool
+      name: controller.credentials_test_create
+      description: Test update the input values of an external credential.
+    - type: tool
+      name: controller.credential_types_list
+      description: A list of credential types.
+    - type: tool
+      name: controller.credential_types_create
+      description: Create a new custom credential type.
+    - type: tool
+      name: controller.credential_types_retrieve
+      description: Retrieve a credential type.
+    - type: tool
+      name: controller.credential_types_update
+      description: Update a custom credential type.
+    - type: tool
+      name: controller.credential_types_destroy
+      description: Delete a custom credential type.
+    - type: tool
+      name: controller.credentials_input_sources_create
+      description: Create new source for a credential.
+    - type: tool
+      name: controller.credential_input_sources_list
+      description: List credential input sources.
+    - type: tool
+      name: controller.settings_list
+      description: A list of settings endpoints.
+    - type: tool
+      name: controller.settings_retrieve
+      description: Retrieve a setting.
+    - type: tool
+      name: controller.settings_partial_update
+      description: Update system settings.
+    - type: tool
+      name: gateway.settings_list
+      description: List Gateway setting categories.
+    - type: tool
+      name: gateway.settings_getter
+      description: Get Gateway preferences for a category.
+    - type: tool
+      name: gateway.settings_update
+      description: Update Gateway preferences within a category.
+    - type: tool
+      name: controller.config_retrieve
+      description: Return various configuration settings.
+    - type: tool
+      name: controller.config_create
+      description: Add or update a subscription manifest license.
+    - type: tool
+      name: controller.notification_templates_list
+      description: A list of notification templates.
+    - type: tool
+      name: controller.notification_templates_create
+      description: Create a new notification template.
+    - type: tool
+      name: controller.notification_templates_retrieve
+      description: Retrieve a notification template.
+    - type: tool
+      name: controller.notification_templates_update
+      description: Update a notification template.
+    - type: tool
+      name: controller.notification_templates_destroy
+      description: Delete a notification template.
+    - type: tool
+      name: controller.execution_environments_list
+      description: A list of execution environments.
+    - type: tool
+      name: controller.execution_environments_create
+      description: Create a new execution environment.
+    - type: tool
+      name: controller.execution_environments_retrieve
+      description: Retrieve an execution environment.
+    - type: tool
+      name: controller.execution_environments_update
+      description: Update an execution environment.
+    - type: tool
+      name: controller.execution_environments_destroy
+      description: Delete an execution environment.
+    - type: tool
+      name: controller.organizations_execution_environments_create
+      description: Create an execution environment of an organization.
+    - type: tool
+      name: controller.organizations_instance_groups_create
+      description: Create an instance group of an organization.
+    - type: tool
+      name: controller.organizations_galaxy_credentials_create
+      description: Create new credential for an organization.
+    - type: tool
+      name: galaxy.ansible_content_collections_index
+      description: Get collection index in distribution.
+    - type: tool
+      name: galaxy.ansible_content_collections_index_versions_get_distro_base_pa
+      description: List collection versions in distribution.
+    - type: tool
+      name: galaxy.execution_environments_repositories_get_repositories
+      description: List execution environment repositories.
+    - type: tool
+      name: lightspeed.aap_rag_search
+      description: Search AAP documentation and knowledge base using RAG.
+  packages: []
+  remotes:
+    - url: https://aap-mcp-server.example.com/job_management/mcp
+    - url: https://aap-mcp-server.example.com/inventory_management/mcp
+    - url: https://aap-mcp-server.example.com/configuration/mcp
+    - url: https://aap-mcp-server.example.com/security_compliance/mcp
+    - url: https://aap-mcp-server.example.com/system_monitoring/mcp
+    - url: https://aap-mcp-server.example.com/user_management/mcp
+  dependsOn:
+    - system:default/agentic-plugins
+  dependencyOf:
+    - airesource:ai5-marketplace/job-template-creator
+    - airesource:ai5-marketplace/job-template-remediation-validator
+    - airesource:ai5-marketplace/mcp-aap-validator
+    - airesource:ai5-marketplace/playbook-executor
+    - airesource:ai5-marketplace/remediation
+    - airesource:ai5-marketplace/rh-sre
