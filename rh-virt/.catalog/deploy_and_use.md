@@ -12,7 +12,6 @@
   - [Claude Code](https://claude.com/product/claude-code) (CLI or IDE extension)
   - [GitHub Copilot](https://github.com/features/copilot) (CLI or VS Code)
   - [Cursor](https://www.cursor.com/)
-  - [Gemini CLI](https://github.com/google-gemini/gemini-cli)
   - [OpenCode](https://opencode.ai/)
 - [Lola](https://github.com/LobsterTrap/lola) CLI installed
 - [Podman](https://podman.io/) (or Docker) — the MCP server runs as a container
@@ -26,7 +25,7 @@
 lola market add rh-agentic-plugins https://raw.githubusercontent.com/RHEcosystemAppEng/agentic-catalog/main/marketplace/rh-agentic-collection.yml
 
 # Install the rh-virt pack (replace claude-code with your AI assistant)
-# Valid targets: claude-code, copilot-cli, copilot-vscode, cursor, gemini-cli, opencode
+# Valid targets: claude-code, copilot-cli, copilot-vscode, cursor, opencode
 lola install rh-virt -a claude-code
 ```
 
