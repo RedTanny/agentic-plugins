@@ -3,43 +3,63 @@
   Golden sources: skills/*/SKILL.md, README.md, AGENTS.md
 -->
 
+## Deploy and use
+**Note:** This skill pack is released as Developer Preview. Developer Preview features provide early access to functionality in advance of possible inclusion in a Red Hat product offering. For more information about the support scope of Red Hat Developer Preview features, see [Developer Preview Support Scope](https://access.redhat.com/support/offerings/devpreview).
+
 ### Prerequisites
 
-- Claude Code CLI or IDE extension (if using Claude Code)
-- Red Hat service account ([console.redhat.com](https://console.redhat.com/iam/service-accounts))
+- At least one supported AI coding assistant:
+  - [Claude Code](https://claude.com/product/claude-code) (CLI or IDE extension)
+  - [GitHub Copilot](https://github.com/features/copilot) (CLI or VS Code)
+  - [Cursor](https://www.cursor.com/)
+  - [OpenCode](https://opencode.ai/)
+- [Lola](https://github.com/LobsterTrap/lola) CLI installed
 
-Skills fall back to WebFetch on public Red Hat documentation if the MCP server is not configured.
-
-### Environment setup
-
-No environment variables are required for this pack's MCP server. Authentication uses Red Hat Customer Portal browser SSO.
-
-### Installation (Lola)
-
-From a checkout of this repository, install the pack with [Lola](https://github.com/LobsterTrap/lola):
+### Step 1: Install the skill pack
 
 ```bash
-lola install -f rh-basic
+# Add the Red Hat Agentic marketplace (one-time setup)
+lola market add rh-agentic-plugins https://raw.githubusercontent.com/RHEcosystemAppEng/agentic-catalog/main/marketplace/rh-agentic-collection.yml
+
+# Install the rh-basic pack (replace claude-code with your AI assistant)
+# Valid targets: claude-code, copilot-cli, copilot-vscode, cursor, opencode
+lola install rh-basic -a claude-code
 ```
 
-The module is declared in **`marketplace/rh-agentic-collection.yml`** ([agentic-catalog](https://github.com/RHEcosystemAppEng/agentic-catalog)) (`path: rh-basic`). See the root [README.md](../../README.md) for marketplace setup.
+This installs the skills, the instructions file, and the MCP server definitions into your project.
 
-### Installation (Claude Code)
+Verify the installation:
 
 ```bash
-lola install -f rh-basic -a claude-code
+lola list
 ```
 
-### Installation (Cursor)
+### Step 2: Set up the MCP server
+
+This pack uses the Red Hat Security MCP server, which authenticates via browser SSO — no environment variables are required.
+
+After installation, run the setup skill to configure the server:
+
+```
+/red-hat-security-mcp-setup
+```
+
+This adds the Red Hat Security MCP server to your project's `.mcp.json` and guides you through browser SSO authentication.
+
+### Step 3: Use the skills
+
+The pack provides 6 skills. See the [rh-basic README](../README.md) for the full list with descriptions and usage examples.
+
+### Uninstall
+
+Remove the skill pack from your project:
 
 ```bash
-lola install -f rh-basic -a cursor
+lola uninstall rh-basic
 ```
 
-### MCP configuration
+To also remove the marketplace registry:
 
-Server definitions live in **`mcps.json`** at the pack root and use HTTP transport:
-
-- `red-hat-security` -> `https://security-mcp.api.redhat.com/mcp`
-
-After installation, run `/red-hat-security-mcp-setup` to add the server to your project's `.mcp.json` and complete browser SSO authentication.
+```bash
+lola market rm rh-agentic-plugins
+```

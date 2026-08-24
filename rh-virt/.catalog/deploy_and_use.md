@@ -3,16 +3,45 @@
   Golden sources: skills/*/SKILL.md, README.md, AGENTS.md
 -->
 
+## Deploy and use
+**Note:** This skill pack is released as Developer Preview. Developer Preview features provide early access to functionality in advance of possible inclusion in a Red Hat product offering. For more information about the support scope of Red Hat Developer Preview features, see [Developer Preview Support Scope](https://access.redhat.com/support/offerings/devpreview).
+
 ### Prerequisites
 
-- Claude Code CLI or IDE extension (if using Claude Code)
-- Podman (or Docker) for the container-based MCP server defined in **`mcps.json`**
+- At least one supported AI coding assistant:
+  - [Claude Code](https://claude.com/product/claude-code) (CLI or IDE extension)
+  - [GitHub Copilot](https://github.com/features/copilot) (CLI or VS Code)
+  - [Cursor](https://www.cursor.com/)
+  - [OpenCode](https://opencode.ai/)
+- [Lola](https://github.com/LobsterTrap/lola) CLI installed
+- [Podman](https://podman.io/) (or Docker) — the MCP server runs as a container
 - OpenShift cluster (**>= 4.19**) with the **OpenShift Virtualization** operator installed
 - A kubeconfig with RBAC sufficient for VirtualMachine and related KubeVirt resources in target namespaces
 
-### Environment setup
+### Step 1: Install the skill pack
 
-Point **`KUBECONFIG`** at a kubeconfig file the MCP container can read (names must match **`mcps.json`**):
+```bash
+# Add the Red Hat Agentic marketplace (one-time setup)
+lola market add rh-agentic-plugins https://raw.githubusercontent.com/RHEcosystemAppEng/agentic-catalog/main/marketplace/rh-agentic-collection.yml
+
+# Install the rh-virt pack (replace claude-code with your AI assistant)
+# Valid targets: claude-code, copilot-cli, copilot-vscode, cursor, opencode
+lola install rh-virt -a claude-code
+```
+
+This installs the skills, the instructions file, and the MCP server definitions into your project.
+
+Verify the installation:
+
+```bash
+lola list
+```
+
+### Step 2: Configure environment variables
+
+The pack uses an MCP server that requires a kubeconfig passed as an environment variable. **Never hardcode kubeconfig contents — always use environment variables.**
+
+**For cluster operations** (`openshift-virtualization`):
 
 ```bash
 export KUBECONFIG="/path/to/your/kubeconfig"
@@ -22,36 +51,22 @@ Verify the API sees KubeVirt / VM objects (optional smoke check):
 
 ```bash
 oc get virtualmachines -A
-# or
-kubectl get vms -A
 ```
 
-The pack **`mcps.json`** mounts `${KUBECONFIG}` read-only into the MCP container and passes **`${KUBECONFIG}`** in `env` — use placeholders only in git; never commit kubeconfig contents or secrets.
+### Step 3: Use the skills
 
-If you build the OpenShift MCP image locally instead of pulling a published image, follow **Building the MCP Server Container Image** in the pack **[README.md](../../README.md)**.
+The pack provides 10 skills. See the [rh-virt README](../README.md) for the full list with descriptions and usage examples.
 
-### Installation (Lola)
+### Uninstall
 
-From a checkout of this repository, install the pack with [Lola](https://github.com/LobsterTrap/lola):
+Remove the skill pack from your project:
 
 ```bash
-lola install -f rh-virt
+lola uninstall rh-virt
 ```
 
-The module is declared in **`marketplace/rh-agentic-collection.yml`** ([agentic-catalog](https://github.com/RHEcosystemAppEng/agentic-catalog)) (`path: rh-virt`). See the root [README.md](../../README.md) for marketplace setup.
-
-### Installation (Claude Code)
+To also remove the marketplace registry:
 
 ```bash
-lola install -f rh-virt -a claude-code
+lola market rm rh-agentic-plugins
 ```
-
-### Installation (Cursor)
-
-```bash
-lola install -f rh-virt -a cursor
-```
-
-### MCP configuration
-
-Server definitions live in **`mcps.json`** at the pack root (`openshift-virtualization` server, **`--toolsets`** includes **`kubevirt`**). Use **`${VAR}`** placeholders only; never commit secrets.
